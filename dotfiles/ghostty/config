@@ -1,0 +1,28 @@
+font-family = "FiraCode Nerd Font"
+font-size = 18
+adjust-cursor-thickness = 4
+
+# binds https://gist.github.com/hensg/43bc71c21d1f79385892352a390aa2ca
+keybind = shift+ctrl+r=reload_config
+keybind = alt+d=new_split:right
+keybind = alt+shift+d=new_split:down
+keybind = alt+[=goto_split:previous
+keybind = alt+]=goto_split:next
+keybind = alt+t=new_tab
+keybind = ctrl+alt+w=close_tab
+
+keybind = ctrl+shift+t=ignore
+keybind = ctrl+shift+w=ignore
+keybind = ctrl+shift+e=ignore
+keybind = ctrl+shift+o=ignore
+keybind = ctrl+super+[=ignore
+keybind = ctrl+super+]=ignore
+keybind = ctrl+enter=ignore
+
+# copy
+clipboard-read = allow
+clipboard-write = allow
+
+# theme
+window-theme = dark
+theme = Everforest Dark - Hard

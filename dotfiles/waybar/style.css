@@ -1,0 +1,129 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Fira Code", monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+    color: #f5a97f;
+}
+
+
+window#waybar {
+    background: #000000;
+    color: #fff4d2;
+    padding-right: 9px;
+    padding-left: 5px;
+    margin: 0;
+    border-radius: 19px;
+  }
+
+tooltip {
+    background: #000000;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f5a97f;
+}
+
+#workspaces button {
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    border-bottom: 2px solid #a6adc8;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #000000;
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+
+#menu,
+#menuitem,
+#custom-power,
+#custom-gpu,
+#custom-vram,
+#custom-weather,
+#custom-notification,
+#custom-bt,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#idle_inhibitor,
+#language,
+#tray,
+#backlight,
+#cpu,
+#temperature,
+#custom-audio_idle_inhibitor,
+
+#memory {
+    background: #000000;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 4px;
+}
+
+#tray {
+    border-radius: 10px;
+    margin-right: 10px;
+    border: 1px;
+    border: 1px solid #f5a97f;
+}
+
+#workspaces {
+    background: #000000;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border: 1px solid #f5a97f;
+}
+
+#window {
+    border-radius: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+    border: 1px;
+}
+
+#clock {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 0px;
+    border-right: 0px;
+    border: 1px;
+}
+
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+/* Power Menu Styling */
+#custom-power {
+    border-radius: 0px 10px 10px 0px;
+    border-right: 0px;
+    margin-left: 0px;
+}
+/* */
