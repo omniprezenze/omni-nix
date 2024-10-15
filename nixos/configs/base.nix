@@ -1,7 +1,7 @@
 {pkgs, ...}: {
     imports = [
         ./hardware-configuration.nix
-        ./packages.nix
+        ./apps.nix
         ../../packages/scripts/screenshot.nix
     ];
 
@@ -21,17 +21,13 @@
         };
     };
 
-    hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-    };
-
     hardware.xone.enable = true;
     networking.hostName = "omnipc";
 
     hardware = {
         graphics = {
             enable = true;
+            enable32Bit = true;
         };
         bluetooth.enable = true;
     };
@@ -39,6 +35,11 @@
     networking = {
         networkmanager.enable = true;
     };
+
+    nixpkgs = {
+        config.allowUnfree = true;
+    };
+
     environment = {
         systemPackages = [
             pkgs.bemoji
@@ -53,7 +54,6 @@
             pkgs.hyprpaper # wallpaper manager 
             pkgs.kdiff3 # graphical tool for comparing and merging files and directories
             pkgs.kitty # terminal emulator 
-            pkgs.git
             pkgs.meld # visual diff and merge tool 
             pkgs.nil
             pkgs.nomacs # basic image editor
@@ -78,7 +78,7 @@
             pkgs.zoxide # cd replace with fuzzy search
             pkgs.amdgpu_top
         ];
-    }
+    };
 
     services = {
         pipewire = {
@@ -87,17 +87,28 @@
             alsa.support32Bit = true;
             pulse.enable = true;
         };
+        greetd = {
+            enable = true;
+            settings = {
+                default_session = {
+                    command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --user-menu --cmd Hyprland";
+                    user = "greeter";
+                };
+            };
+        };
         blueman.enable = true;
         udisks2.enable = true;
     };
 
     security.pam.services.swaylock.text = "auth include login";
-
-    shells = [pkgs.zsh];
-    sessionVariables.NIXOS_OZONE_WL = "1";
-    variables = {
-        EDITOR = "hx";
-        BEMOJI_PICKER_CMD = "fuzzel --dmenu";
+    
+    environment = {
+        shells = [pkgs.zsh];
+        sessionVariables.NIXOS_OZONE_WL = "1";
+        variables = {
+            EDITOR = "hx";
+            BEMOJI_PICKER_CMD = "fuzzel --dmenu";
+        };
     };
 
     programs = {
@@ -115,16 +126,6 @@
                 pkgs.xfce.tumbler
             ];
         };
-
-    services.greetd = {
-        enable = true;
-        settings = {
-            default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --user-menu --cmd Hyprland";
-                user = "greeter";
-            };
-        };
-    };
 
         zsh = {
             enable = true;
@@ -157,11 +158,7 @@
             isNormalUser = true;
             home = "/home/omni";
             extraGroups = ["wheel" "networkmanager" "video" "docker" "gamemode"];
-        }
-    };
-
-    nixpkgs = {
-        config.allowUnfree = true;
+        };
     };
 
     fonts = {
@@ -184,9 +181,7 @@
         ];
     };
 
-    xdg.portal = {
-        enable = true;
-    };
+    xdg.portal.enable = true;
 
     nix = {
         settings = {

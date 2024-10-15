@@ -9,10 +9,11 @@
     let
         lib = nixpkgs.lib;
     in {
-    omnipc = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./nix-config/configuration.nix ]
+        nixosConfigurations = {
+            omnipc = lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [ ./configs/base.nix ];
+            };
+        };
     };
-    };
-
 }
