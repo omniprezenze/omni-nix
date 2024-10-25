@@ -15,7 +15,7 @@
                 editor = false;
                 configurationLimit = 5;
             };
-            timeout = 1;
+            timeout = 15;
             efi = {
                 canTouchEfiVariables = true;
                 efiSysMountPoint = "/boot";
@@ -30,10 +30,22 @@
         graphics = {
             enable = true;
             enable32Bit = true;
+            extraPackages = with pkgs; [
+                libva
+                libvdpau
+                vaapiVdpau
+                libvdpau-va-gl
+            ];
+            extraPackages32 = with pkgs.pkgsi686Linux; [
+                vaapiVdpau
+                libvdpau-va-gl
+            ];
         };
         bluetooth = { 
           enable = true;
           powerOnBoot = true;
+          package = pkgs.bluez;
+
         };
     };
 
@@ -83,6 +95,8 @@
             pkgs.xdg-utils
             pkgs.zoxide # cd replace with fuzzy search
             pkgs.amdgpu_top
+            pkgs.mesa
+            pkgs.vulkan-tools
         ];
     };
 

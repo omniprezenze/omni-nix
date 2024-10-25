@@ -34,13 +34,8 @@
             proton-ge-bin
             mangohud
         ];
-        gamescopeSession.enable = true;
-    };
-    # in launch opts
-    # use gamemoderun %command%
-    # use mangohud %command%
-    # use gamescope %command%
-
+        protontricks.enable = true;
+        };
+    
     programs.gamemode.enable = true;
-
 }
