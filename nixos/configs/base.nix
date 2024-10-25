@@ -42,6 +42,8 @@
 
     environment = {
         systemPackages = [
+            pkgs.vim
+            pkgs.upower
             pkgs.bemoji
             pkgs.bibata-cursors
             pkgs.btop
@@ -176,7 +178,7 @@
             pkgs.fira-code
             pkgs.meslo-lgs-nf
             pkgs.noto-fonts
-            pkgs.noto-fonts-cjk
+            pkgs.noto-fonts-cjk-sans
             pkgs.noto-fonts-emoji
         ];
     };
