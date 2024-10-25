@@ -8,7 +8,7 @@
             pkgs.obs-studio
             pkgs.path-of-building
             pkgs.qbittorrent
-            pkgs.discord
+            pkgs.vesktop
             pkgs.wine64
             pkgs.bottles
             pkgs.telegram-desktop

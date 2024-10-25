@@ -4,6 +4,8 @@
         ./apps.nix
         ../../packages/scripts/screenshot.nix
     ];
+    
+    system.stateVersion = "24.11";
 
     boot = {
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
@@ -29,7 +31,10 @@
             enable = true;
             enable32Bit = true;
         };
-        bluetooth.enable = true;
+        bluetooth = { 
+          enable = true;
+          powerOnBoot = true;
+        };
     };
 
     networking = {
