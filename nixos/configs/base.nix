@@ -6,7 +6,7 @@
     ];
 
     boot = {
-        kernelPackages = pkgs.linuxPackages_latest;
+        kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
         loader = {
             systemd-boot = {
                 enable = true;
@@ -43,7 +43,6 @@
     environment = {
         systemPackages = [
             pkgs.vim
-            pkgs.upower
             pkgs.bemoji
             pkgs.bibata-cursors
             pkgs.btop
