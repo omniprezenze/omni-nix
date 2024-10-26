@@ -135,7 +135,7 @@
                 pkgs.xfce.tumbler
             ];
         };
-
+        ssh.startAgent = true;
         zsh = {
             enable = true;
             autosuggestions.enable = true;
