@@ -1,9 +1,7 @@
-{pkgs, ...}: {  
+{pkgs, ...}: {
     environment = {
         systemPackages = [
             pkgs.gimp
-            pkgs.helvum
-            pkgs.qpwgraph
             pkgs.lutris
             pkgs.obs-studio
             pkgs.path-of-building
@@ -12,6 +10,9 @@
             pkgs.wine64
             pkgs.bottles
             pkgs.telegram-desktop
+            pkgs.spotify
+            pkgs.vscode
+            pkgs.xdotool
 
             pkgs.python3
             pkgs.pipx
@@ -25,17 +26,4 @@
 
     virtualisation.docker.enable = true;
 
-    # steam and shit
-
-    programs.steam = {
-        enable = true;
-        dedicatedServer.openFirewall = true;
-        extraCompatPackages = with pkgs;[
-            proton-ge-bin
-            mangohud
-        ];
-        protontricks.enable = true;
-        };
-    
-    programs.gamemode.enable = true;
 }

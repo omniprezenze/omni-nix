@@ -1,12 +1,16 @@
 {pkgs, ...}: {
+
+    system.stateVersion = "24.11";
+
     imports = [
         ./hardware-configuration.nix
+        ./amd-gpu.nix
+        ./bluetooth.nix
         ./apps.nix
+        ./steam.nix
         ../../packages/scripts/screenshot.nix
     ];
     
-    system.stateVersion = "24.11";
-
     boot = {
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
         loader = {
@@ -25,29 +29,6 @@
 
     hardware.xone.enable = true;
     networking.hostName = "omnipc";
-
-    hardware = {
-        graphics = {
-            enable = true;
-            enable32Bit = true;
-            extraPackages = with pkgs; [
-                libva
-                libvdpau
-                vaapiVdpau
-                libvdpau-va-gl
-            ];
-            extraPackages32 = with pkgs.pkgsi686Linux; [
-                vaapiVdpau
-                libvdpau-va-gl
-            ];
-        };
-        bluetooth = { 
-          enable = true;
-          powerOnBoot = true;
-          package = pkgs.bluez;
-
-        };
-    };
 
     networking = {
         networkmanager.enable = true;
@@ -68,7 +49,6 @@
             pkgs.firefox
             pkgs.fuzzel # app launcher
             pkgs.fzf # fuzzy finder 
-            pkgs.helix
             pkgs.hyprpaper # wallpaper manager 
             pkgs.kdiff3 # graphical tool for comparing and merging files and directories
             pkgs.kitty # terminal emulator 
@@ -83,7 +63,7 @@
             pkgs.swaylock-effects # screen locker for sway
             pkgs.swaynotificationcenter # notification center for sway
             pkgs.tldr # simple man
-            pkgs.udiskie # management daemon 
+            pkgs.udiskie # removable disks daemon 
             pkgs.unrar
             pkgs.unzip
             pkgs.vlc
@@ -91,12 +71,19 @@
             pkgs.wlogout # logout dialog 
             pkgs.wl-clipboard 
             pkgs.wttrbar # weather information display
+            pkgs.glib
+            pkgs.gsettings-desktop-schemas
+            pkgs.dconf
+            pkgs.theme-obsidian2
             pkgs.xdg-user-dirs
             pkgs.xdg-utils
             pkgs.zoxide # cd replace with fuzzy search
             pkgs.amdgpu_top
             pkgs.mesa
             pkgs.vulkan-tools
+            pkgs.helvum
+            pkgs.qpwgraph
+            pkgs.tree
         ];
     };
 
@@ -116,7 +103,6 @@
                 };
             };
         };
-        blueman.enable = true;
         udisks2.enable = true;
     };
 
@@ -124,9 +110,12 @@
     
     environment = {
         shells = [pkgs.zsh];
-        sessionVariables.NIXOS_OZONE_WL = "1";
+        sessionVariables = {
+            NIXOS_OZONE_WL = "1";
+            GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+            };
         variables = {
-            EDITOR = "hx";
+            EDITOR = "vim";
             BEMOJI_PICKER_CMD = "fuzzel --dmenu";
         };
     };
@@ -201,7 +190,14 @@
         ];
     };
 
-    xdg.portal.enable = true;
+    xdg.portal = {
+        enable = true;
+        extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-hyprland
+        ];
+        xdgOpenUsePortal = true;
+    };
 
     nix = {
         settings = {
