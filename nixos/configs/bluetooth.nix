@@ -6,6 +6,8 @@
         package = pkgs.bluez;
         settings.General = {
           FastConnectable = "true";
+          ReconnectAttempts = "10";
+          ReconnectIntervals="1, 2, 3";
         };
       };
   };

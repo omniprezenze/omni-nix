@@ -69,7 +69,8 @@
             pkgs.vlc
             pkgs.waybar # WM top bar
             pkgs.wlogout # logout dialog 
-            pkgs.wl-clipboard 
+            pkgs.wl-clipboard
+            pkgs.wl-clip-persist
             pkgs.wttrbar # weather information display
             pkgs.glib
             pkgs.gsettings-desktop-schemas
