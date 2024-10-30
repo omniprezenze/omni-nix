@@ -9,6 +9,7 @@
         ./apps.nix
         ./steam.nix
         ../../packages/scripts/screenshot.nix
+        ./kb_bluetooth.nix
     ];
     
     boot = {

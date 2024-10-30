@@ -19,10 +19,10 @@
         system = "x86_64-linux";
         modules = [
           ./configs/base.nix
+          # star rail launcher
           aagl.nixosModules.default
           {
             nix.settings = aagl.nixConfig;
-
             programs.anime-games-launcher.enable = true;
           }
         ];
