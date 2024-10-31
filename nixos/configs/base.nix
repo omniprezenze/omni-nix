@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
 
     system.stateVersion = "24.11";
 
@@ -10,9 +10,12 @@
         ./steam.nix
         ../../packages/scripts/screenshot.nix
         ./kb_bluetooth.nix
+        inputs.nix-gaming.nixosModules.platformOptimizations
+        inputs.nix-gaming.nixosModules.pipewireLowLatency
     ];
     
     boot = {
+        initrd.kernelModules = [ "amdgpu" ];
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
         loader = {
             systemd-boot = {
@@ -81,7 +84,6 @@
             pkgs.xdg-utils
             pkgs.zoxide # cd replace with fuzzy search
             pkgs.amdgpu_top
-            pkgs.mesa
             pkgs.vulkan-tools
             pkgs.helvum
             pkgs.qpwgraph
@@ -95,6 +97,7 @@
             alsa.enable = true;
             alsa.support32Bit = true;
             pulse.enable = true;
+            lowLatency.enable = true;
         };
         greetd = {
             enable = true;
@@ -108,7 +111,10 @@
         udisks2.enable = true;
     };
 
-    security.pam.services.swaylock.text = "auth include login";
+    security = { 
+        pam.services.swaylock.text = "auth include login";
+        rtkit.enable = true;
+    };
     
     environment = {
         shells = [pkgs.zsh];
@@ -125,6 +131,13 @@
     programs = {
         file-roller.enable = true;
         git.enable = true;
+        corectrl = {
+            enable = true;
+            gpuOverclock = { 
+                enable = true;
+                ppfeaturemask = "0xffffffff";
+            };
+        };
         hyprland = {
             enable = true;
             xwayland.enable = true;
@@ -168,7 +181,7 @@
         users.omni = {
             isNormalUser = true;
             home = "/home/omni";
-            extraGroups = ["wheel" "networkmanager" "video" "docker" "gamemode"];
+            extraGroups = ["wheel" "networkmanager" "video" "docker" "gamemode" "corectrl"];
         };
     };
 
@@ -205,6 +218,8 @@
         settings = {
             experimental-features = ["nix-command" "flakes"];
             warn-dirty = false;
+            substituters = ["https://nix-gaming.cachix.org"];
+            trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
         };
         gc = {
             automatic = true;
