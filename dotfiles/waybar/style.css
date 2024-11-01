@@ -48,6 +48,9 @@ tooltip {
     border-radius: 10px;
 }
 
+#menu
+#menuitem,
+#custom-power,
 #custom-gpu,
 #custom-vram,
 #custom-weather,
@@ -63,7 +66,7 @@ tooltip {
 #tray,
 #backlight,
 #cpu,
-#temperature,
+#temperature
 #memory {
     background: #1e1e2e;
     padding: 0px 10px;
@@ -139,3 +142,22 @@ tooltip {
     border-right: 0px;
     margin-left: 0px;
 }
+
+/* Power Menu Styling */
+menu {
+    background: #1e1e2e;
+    border-style: solid;
+    border-color: #11111b;
+    border-radius: 15px;
+}
+menuitem {
+	border-radius: 15px;
+    font-family: "Fira Code", monospace;
+    font-size: 14px;
+}
+#custom-power {
+    border-radius: 0px 10px 10px 0px;
+    border-right: 0px;
+    margin-left: 0px;
+}
+/* */

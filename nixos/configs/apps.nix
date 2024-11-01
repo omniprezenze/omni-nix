@@ -13,6 +13,7 @@
             pkgs.spotify
             pkgs.vscode
             pkgs.xdotool
+            pkgs.qalculate-gtk
 
             pkgs.python3
             pkgs.pipx

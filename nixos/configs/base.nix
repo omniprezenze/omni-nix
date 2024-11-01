@@ -88,6 +88,7 @@
             pkgs.helvum
             pkgs.qpwgraph
             pkgs.tree
+            pkgs.lm_sensors
         ];
     };
 
