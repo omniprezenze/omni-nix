@@ -14,11 +14,22 @@
       telegram-desktop
       spotify
       vscodium
-      xdotool
+      obsidian
       qalculate-gtk
+      shotcut
+      hiddify-app
+
+      pcsx2
+      duckstation
+      ryujinx-greemdev
+      rpcs3
 
       python3
       pipx
+
+      go
+      gotools
+
       ansible
       kubectl
       terraform
@@ -26,7 +37,5 @@
   };
   # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
   # activate and use the Python virtual environment as usual and install dependencies
-
-  virtualisation.docker.enable = true;
 
 }

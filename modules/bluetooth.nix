@@ -8,7 +8,5 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [
-    overskride
-  ];
+  services.blueman.enable = true;
 }

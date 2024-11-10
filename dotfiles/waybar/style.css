@@ -10,16 +10,20 @@
 
 
 window#waybar {
-    background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
-}
+    background: #000000;
+    color: #fff4d2;
+    padding-right: 9px;
+    padding-left: 5px;
+    margin: 0;
+    border-radius: 19px;
+  }
 
 tooltip {
-    background: #1e1e2e;
+    background: #000000;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: #11111b;
+    border-color: #f5a97f;
 }
 
 #workspaces button {
@@ -44,7 +48,7 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #11111b;
+    background: #000000;
     color: #cdd6f4;
     border-radius: 10px;
 }
@@ -72,27 +76,26 @@ tooltip {
 #custom-audio_idle_inhibitor,
 
 #memory {
-    background: #1e1e2e;
+    background: #000000;
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 4px;
-    border: 1px solid #181825;
-    border-radius: 10px;
 }
 
 #tray {
     border-radius: 10px;
     margin-right: 10px;
     border: 1px;
+    border: 1px solid #f5a97f;
 }
 
 #workspaces {
-    background: #1e1e2e;
+    background: #000000;
     border-radius: 10px;
     margin-left: 10px;
     padding-right: 0px;
     padding-left: 5px;
-    border: 1px;
+    border: 1px solid #f5a97f;
 }
 
 #window {
@@ -118,17 +121,6 @@ tooltip {
 }
 
 /* Power Menu Styling */
-menu {
-    background: #1e1e2e;
-    border-style: solid;
-    border-color: #11111b;
-    border-radius: 15px;
-}
-menuitem {
-	border-radius: 15px;
-    font-family: "Fira Code", monospace;
-    font-size: 14px;
-}
 #custom-power {
     border-radius: 0px 10px 10px 0px;
     border-right: 0px;

@@ -1,11 +1,9 @@
 {pkgs, inputs, ...}: {
-  system.stateVersion = "24.05";
 
   boot = {
     initrd = {
       systemd.enable = true;
     };
-
     kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 3;
     loader = {
@@ -16,21 +14,41 @@
     tmp.cleanOnBoot = true;
   };
 
-  networking.hostName = "omnipc";
+  # Show asterisks when typing sudo password
+  security.sudo.extraConfig = "Defaults env_reset,pwfeedback";
+
+  powerManagement.cpuFreqGovernor = "performance";
+
   networking = {
-    networkmanager.enable = true;
-  };
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      General = {
-        EnableNetworkConfiguration = true;
-      };
-      Network = {
-        EnableIPv6 = true;
-      };
-      Scan = {
-        DisablePeriodicScan = true;
+    enableIPv6 = false;
+    networkmanager = {
+      enable = true;
+      insertNameservers = ["1.1.1.1" "1.0.0.1"];
+    };
+    extraHosts = "
+      192.168.88.233 deepseek.lan
+      192.168.88.1 router.lan
+    ";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        9443 # webui panel
+        11434 # ollama
+        5900 # vnc
+        ];
+    };
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        General = {
+          EnableNetworkConfiguration = true;
+        };
+        Network = {
+          EnableIPv6 = false;
+        };
+        Scan = {
+          DisablePeriodicScan = true;
+        };
       };
     };
   };
@@ -52,19 +70,27 @@
       ripgrep # command-line search tool that recursively searches directories for regex patterns
       unrar
       unzip
+      p7zip
       vulkan-tools
       helvum
       qpwgraph
       tree
       lm_sensors
+      jq
+      dig
     ];
-  };
-
-  environment = {
     shells = [pkgs.zsh];
     variables = {
       EDITOR = "vim";
-      XDG_SESSION_TYPE = "wayland";
+      XKB_DEFAULT_LAYOUT = "us,ru";
+      XKB_DEFAULT_OPTIONS = "altwin:menu_win, grp:ctrl_space_toggle";
+    };
+    shellAliases = {
+      kbc = "kubectl";
+      ip = "ip --color";
+      kssh = "kitten ssh";
+      usb-mount = "udisksctl mount -b";
+      usb-unmount = "udisksctl unmount -b";
     };
   };
 
@@ -76,11 +102,14 @@
     zsh = {
       enable = true;
       autosuggestions.enable = true;
+      autosuggestions.strategy = ["completion"];
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       ohMyZsh = {
         enable = true;
+        theme = "robbyrussell";
         plugins = [
+          "git"
           "direnv"
           "fancy-ctrl-z"
           ];
@@ -91,16 +120,17 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  console = {
-    font = "Lat2-Terminus16";
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  # };
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
     "ru_RU.UTF-8/UTF-8"
+    "en_IE.UTF-8/UTF-8"
   ];
   
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_IE.UTF-8";
 
   users = {
     defaultUserShell = pkgs.zsh;
@@ -108,8 +138,8 @@
       isNormalUser = true;
       home = "/home/omni";
       extraGroups = [
-        "wheel" "networkmanager" "docker" 
-        "video" "gamemode" "corectrl" "input"
+        "wheel" "networkmanager" "input" "ydotool"
+        "video" "gamemode" "corectrl"
       ];
     };
   };
@@ -124,22 +154,27 @@
         emoji = ["Noto Sans" "Noto Color Emoji"];
       };
     };
-    packages = [
-      pkgs.dejavu_fonts
-      pkgs.fira-code
-      pkgs.meslo-lgs-nf
-      pkgs.noto-fonts
-      pkgs.noto-fonts-cjk-sans
-      pkgs.noto-fonts-emoji
+    packages = with pkgs; [
+      dejavu_fonts
+      fira-code
+      meslo-lgs-nf
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
     ];
   };
 
   nix = {
     settings = {
+      allowed-users = ["@wheel"];
       experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
       warn-dirty = false;
-      substituters = ["https://nix-gaming.cachix.org"];
-      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+      substituters = ["https://ezkea.cachix.org" "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
     };
     gc = {
       automatic = true;

@@ -4,9 +4,9 @@
     "height": 38, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["custom/power", "custom/weather", "hyprland/workspaces"],
+    "modules-left": ["custom/power", "cpu", "memory", "temperature", "network", "custom/bt", "systemd-failed-units", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["hyprland/language", "tray", "custom/bluetooth", "pulseaudio", "cpu", "temperature", "network", "custom/bt", "custom/notification", "clock"],
+    "modules-right": ["hyprland/language", "tray", "pulseaudio", "custom/weather", "clock", "custom/notification"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "on-click": "activate",
@@ -40,6 +40,7 @@
     "clock": {
         "tooltip-format": "<span size='10pt' font='Fira Code'>{calendar}</span>",
         "format": " {:%R  %d-%b}",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e calcure\"",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -56,7 +57,6 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false,
         "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
     },
     "memory": {
@@ -65,18 +65,22 @@
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 90,
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e amdgpu_top --dark\"",
+        "critical-threshold": 95,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
-        "interval": 1
+        "interval": 1,
+        "tooltip": false
     },
     "network": {
-        "format-wifi": "{signalStrength}% ",
-        "format-ethernet": "󰱓",
-        "tooltip-format": "{ifname} {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "interface": "wlan0",
+        "on-click": "uwsm app -- iwgtk",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -95,14 +99,14 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "uwsm app -- pavucontrol"
     },
-    "custom/weather" : {
-        "tooltip" : true,
-        "format" : "{}°",
-        "interval" : 600,
-        "exec" : "wttrbar --location krakow",
-        "return-type" : "json"
+    "custom/weather": {
+        "tooltip": true,
+        "format": "{}°",
+        "interval": 600,
+        "exec": "uwsm app -- wttrbar --location krakow",
+        "return-type": "json"
     },
     "custom/notification": {
         "tooltip": false,
@@ -119,9 +123,9 @@
         },
         "return-type": "json",
         "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "sleep 0.1 && swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
+        "exec": "uwsm app -- swaync-client -swb",
+        "on-click": "sleep 0.1 && uwsm app -- swaync-client -t -sw",
+        "on-click-right": "uwsm app -- swaync-client -d -sw",
         "escape": true
     },
     "hyprland/language": {
@@ -134,7 +138,15 @@
     "on-click": "wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"
     },
     "custom/bt": {
+        "tooltip": false,
         "format": "󰂯",
-        "on-click": "overskride"
+        "on-click": "uwsm app -- blueman-manager"
+    },
+    "systemd-failed-units": {
+        "hide-on-ok": false, // Do not hide if there is zero failed units.
+        "format": "✗ {nr_failed}",
+        "format-ok": "✓",
+        "system": true, // Monitor failed systemwide units.
+        "user": false // Ignore failed user units.
     }
 }
