@@ -16,6 +16,8 @@
     tmp.cleanOnBoot = true;
   };
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   networking.hostName = "omnipc";
   networking = {
     networkmanager.enable = true;
@@ -57,6 +59,7 @@
       qpwgraph
       tree
       lm_sensors
+      jq
     ];
   };
 
@@ -64,7 +67,8 @@
     shells = [pkgs.zsh];
     variables = {
       EDITOR = "vim";
-      XDG_SESSION_TYPE = "wayland";
+      XKB_DEFAULT_LAYOUT = "us,ru";
+      XKB_DEFAULT_OPTIONS = "altwin:menu_win, grp:ctrl_space_toggle";
     };
   };
 
@@ -91,9 +95,9 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  console = {
-    font = "Lat2-Terminus16";
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  # };
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
@@ -109,7 +113,7 @@
       home = "/home/omni";
       extraGroups = [
         "wheel" "networkmanager" "docker" 
-        "video" "gamemode" "corectrl" "input"
+        "video" "gamemode" "corectrl" "input" "ydotool"
       ];
     };
   };

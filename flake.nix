@@ -25,9 +25,9 @@
           ./configs/apps.nix
           ./configs/steam.nix
           ./configs/aagl.nix
+          ./packages/scripts/screenshot.nix
         ];
       };
     };
   };
 }
-

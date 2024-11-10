@@ -16,11 +16,15 @@
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
+    XDG_SESSION_TYPE = "wayland";
+    HYPRLAND_LOG_WLR = 1;
+    XCURSOR_SIZE = 24;
+    HYPRCURSOR_SIZE = 24;
   };
   environment = {
     systemPackages = with pkgs; [
       
-      swww # wallpaper daemon
+      hyprpaper # wallpaper daemon
       hypridle
 
       iwgtk
@@ -58,7 +62,7 @@
   };
 
   programs.hyprlock = {
-    enable = true; # enable Hyprlock screen locker
+    enable = true;
     package = pkgs.hyprlock;
   };
   security.pam.services.hyprlock = {};
@@ -118,6 +122,9 @@
       enable = true;
       extraPortals = [
           pkgs.xdg-desktop-portal-gtk
+      ];
+      configPackages = [
+        pkgs.xdg-desktop-portal-gtk
       ];
       xdgOpenUsePortal = true;
   };

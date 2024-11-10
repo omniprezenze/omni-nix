@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, ...}: 
+let
+  awakened-poe-trade = import (builtins.fetchGit { url = "https://github.com/hukasu/awakened-poe-trade-nix"; ref = "refs/tags/v0.0.5"; });
+in {
   environment = with pkgs; {
     systemPackages = [
       keepassxc
@@ -14,8 +17,11 @@
       telegram-desktop
       spotify
       vscodium
-      xdotool
       qalculate-gtk
+      dotool
+
+      pcsx2
+      duckstation
 
       python3
       pipx
