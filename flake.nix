@@ -23,6 +23,7 @@
           ./configs/sound.nix
           ./configs/bluetooth.nix
           ./configs/apps.nix
+          ./configs/libvirt.nix
           ./configs/steam.nix
           ./configs/aagl.nix
           ./packages/scripts/screenshot.nix

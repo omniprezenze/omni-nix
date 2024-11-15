@@ -72,7 +72,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --debug --time -r --user-menu --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --user-menu --theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red' --cmd Hyprland";
         user = "greeter";
       };
     };
