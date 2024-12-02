@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
+
+  # imports = [
+  #   inputs.nix-gaming.nixosModules.pipewireLowLatency
+  # ];
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
@@ -14,6 +18,13 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     # media-session.enable = true;
+
+    # lowLatency = {
+    #   enable = true;
+      # defaults
+      # quantum = 64; # you may want to increase quantum
+      # rate = 48000;
+    # };
   };
 
   environment.systemPackages = with pkgs; [

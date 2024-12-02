@@ -80,6 +80,7 @@
     zsh = {
       enable = true;
       autosuggestions.enable = true;
+      autosuggestions.strategy = ["completion"];
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       ohMyZsh = {

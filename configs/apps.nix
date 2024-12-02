@@ -17,6 +17,7 @@ in {
       telegram-desktop
       spotify
       vscodium
+      obsidian
       qalculate-gtk
       dotool
 
@@ -24,6 +25,9 @@ in {
       duckstation
 
       python3
+      go
+      gotools
+
       pipx
       ansible
       kubectl
