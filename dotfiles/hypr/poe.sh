@@ -26,7 +26,7 @@ while IFS= read -r line; do
         current_workspace_id="${BASH_REMATCH[1]}"
     fi
 
-    if [[ "$current_title" == "Path of Exile" ]]; then
+    if [[ "$current_title" == "Path of Exile" || "$current_title" == "Path of Exile 2" ]]; then
         workspace_id="$current_workspace_id"
         client_address="$current_address"
         found=1

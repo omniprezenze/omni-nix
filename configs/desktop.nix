@@ -58,6 +58,7 @@
       zathura
       mpv
       imv
+      nekoray
     ];
   };
 

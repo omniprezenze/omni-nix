@@ -60,6 +60,7 @@
       tree
       lm_sensors
       jq
+      dig
     ];
   };
 
