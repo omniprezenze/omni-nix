@@ -2,16 +2,18 @@
 
 active_window_json=$(hyprctl activewindow -j)
 
-app_class=$(echo "$active_window_json" | jq -r '.class')
 app_pid=$(echo "$active_window_json" | jq -r '.pid')
-app_title=$(echo "$active_window_json" | jq -r '.title')
+app_title=$(echo "$active_window_json" | jq -r '.initialTitle')
 
 audio_section=$(wpctl status | awk '/Audio/{flag=1; next} /Video/{flag=0} flag')
 
 streams_section=$(echo "$audio_section" | awk '/Streams:/{flag=1;next} /^Video/{flag=0} flag')
 
-stream_line=$(echo "$streams_section" | grep -iE "^[[:space:]]*[0-9]+\.[[:space:]]*$app_class[[:space:]]*$")
-stream_id=$(echo "$stream_line" | awk -F '.' '{print $1}' | xargs)
+stream_line=$(echo "$streams_section" | grep -iE "^[[:space:]]*[0-9]+\.[[:space:]]*$app_title[[:space:]]*$")
+stream_id=$(echo "$streams_section" \
+    | grep -iE "^[[:space:]]*[0-9]+\.[[:space:]]*$app_title[[:space:]]*$" \
+    | awk -F '.' '{print $1}' \
+    | head -n 1)
 
 volume_line=$(wpctl get-volume "$stream_id")
 
