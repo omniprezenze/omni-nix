@@ -59,6 +59,7 @@
       mpv
       imv
       nekoray
+      kdePackages.kdenlive
     ];
   };
 
