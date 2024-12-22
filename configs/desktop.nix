@@ -58,7 +58,7 @@
       zathura
       mpv
       imv
-      nekoray
+      hiddify-app
       kdePackages.kdenlive
     ];
   };

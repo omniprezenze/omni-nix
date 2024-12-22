@@ -145,8 +145,10 @@
     settings = {
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
-      substituters = ["https://nix-gaming.cachix.org"];
-      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+      substituters = ["https://ezkea.cachix.org" ];
+      trusted-public-keys = [
+        "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+      ];
     };
     gc = {
       automatic = true;
