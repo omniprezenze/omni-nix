@@ -53,6 +53,7 @@
       swaynotificationcenter # notification center for sway
       wlogout
       amdgpu_top
+      piper
 
       firefox
       zathura
@@ -95,6 +96,7 @@
   programs.direnv.enable = true;
   programs.file-roller.enable = true;
   programs.dconf.enable = true;
+  services.ratbagd.enable = true;
   services.dbus = {
     enable = true;
     implementation = "broker";
