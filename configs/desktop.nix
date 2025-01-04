@@ -6,7 +6,8 @@
         enable = true;
         xwayland.enable = true;
     };
-};
+  };
+  
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
 
@@ -21,6 +22,7 @@
     XCURSOR_SIZE = 24;
     HYPRCURSOR_SIZE = 24;
   };
+
   environment = {
     systemPackages = with pkgs; [
       
@@ -44,9 +46,11 @@
       waybar
 
       wttrbar # weather information display
+
+      nwg-look
       glib
       gsettings-desktop-schemas
-      theme-obsidian2
+      everforest-gtk-theme
       bibata-cursors
 
       rofi-wayland
@@ -100,10 +104,10 @@
   services.dbus = {
     enable = true;
     implementation = "broker";
-    packages = with pkgs; [
-      xfce.xfconf
-      gnome2.GConf
-    ];
+    # packages = with pkgs; [
+    #   xfce.xfconf
+    #   gnome2.GConf
+    # ];
   };
   services.mpd.enable = true;
   programs.thunar = {
@@ -124,12 +128,12 @@
 
   xdg.portal = {
       enable = true;
-      extraPortals = [
-          pkgs.xdg-desktop-portal-gtk
-      ];
-      configPackages = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
+      # extraPortals = [
+      #     pkgs.xdg-desktop-portal-gtk
+      # ];
+      # configPackages = [
+      #   pkgs.xdg-desktop-portal-gtk
+      # ];
       xdgOpenUsePortal = true;
   };
 

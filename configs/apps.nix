@@ -23,6 +23,7 @@ in {
 
       pcsx2
       duckstation
+      ryujinx-greemdev
 
       python3
       go
