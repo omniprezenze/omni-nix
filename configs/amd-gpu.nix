@@ -1,8 +1,11 @@
 {pkgs, ...}: {
 
-    services.xserver.enable = true;
+    services.xserver = {
+      enable = true;
+      videoDrivers = [ "amdgpu" ];
+    };
+    
     boot.initrd.kernelModules = [ "amdgpu" ];
-    services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.graphics = {
     enable = true;
