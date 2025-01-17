@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   
   # Enable Hyprland
   programs = {
     hyprland = {
         enable = true;
         xwayland.enable = true;
+        withUWSM = true;
     };
   };
   
@@ -67,6 +68,8 @@
     ];
   };
 
+  services.hypridle.enable = true;
+
   programs.hyprlock = {
     enable = true;
     package = pkgs.hyprlock;
@@ -76,11 +79,19 @@
   # Enable Display Manager
   services.greetd = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --user-menu --theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red' --cmd Hyprland";
-        user = "greeter";
-      };
+
+    settings.default_session = {
+      user = "greeter";
+
+      command = lib.strings.concatStringsSep " " [
+        "${pkgs.greetd.tuigreet}/bin/tuigreet"
+        "--time"
+        "--remember"
+        "--asterisks"
+        "--user-menu"
+        "--theme \"border=magenta;text=cyan;prompt=red;time=white;action=blue;button=green;container=black;input=white\""
+        "--cmd \"${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop\""
+      ];
     };
   };
 
@@ -127,12 +138,10 @@
 
   xdg.portal = {
       enable = true;
-      # extraPortals = [
-      #     pkgs.xdg-desktop-portal-gtk
-      # ];
-      # configPackages = [
-      #   pkgs.xdg-desktop-portal-gtk
-      # ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
       xdgOpenUsePortal = true;
   };
 

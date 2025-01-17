@@ -16,6 +16,9 @@
     tmp.cleanOnBoot = true;
   };
 
+  # Show asterisks when typing sudo password
+  security.sudo.extraConfig = "Defaults env_reset,pwfeedback";
+
   powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "omnipc";
@@ -131,13 +134,13 @@
         emoji = ["Noto Sans" "Noto Color Emoji"];
       };
     };
-    packages = [
-      pkgs.dejavu_fonts
-      pkgs.fira-code
-      pkgs.meslo-lgs-nf
-      pkgs.noto-fonts
-      pkgs.noto-fonts-cjk-sans
-      pkgs.noto-fonts-emoji
+    packages = with pkgs; [
+      dejavu_fonts
+      fira-code
+      meslo-lgs-nf
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
     ];
   };
 
