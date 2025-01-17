@@ -24,6 +24,7 @@ in {
       pcsx2
       duckstation
       ryujinx-greemdev
+      rpcs3
 
       python3
       go

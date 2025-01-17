@@ -50,7 +50,6 @@
       nwg-look
       glib
       gsettings-desktop-schemas
-      everforest-gtk-theme
       bibata-cursors
 
       rofi-wayland
