@@ -65,9 +65,6 @@
       jq
       dig
     ];
-  };
-
-  environment = {
     shells = [pkgs.zsh];
     variables = {
       EDITOR = "vim";
