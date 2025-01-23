@@ -1,14 +1,5 @@
 { pkgs, lib, ... }: {
-  
-  # Enable Hyprland
-  programs = {
-    hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        withUWSM = true;
-    };
-  };
-  
+    
   environment = {
     systemPackages = with pkgs; [
       
@@ -68,10 +59,6 @@
     dbus = {
       enable = true;
       implementation = "broker";
-      # packages = with pkgs; [
-      #     xfce.xfconf
-      #     gnome2.GConf
-      #   ];
     };
     mpd.enable = true;
     tumbler.enable = true;
@@ -87,7 +74,6 @@
           "--remember"
           "--asterisks"
           "--user-menu"
-          "--theme \"border=magenta;text=cyan;prompt=red;time=white;action=blue;button=green;container=black;input=white\""
           "--cmd \"${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop\""
         ];
       };
@@ -112,6 +98,11 @@
       gpuOverclock = { 
           enable = true;
       };
+    };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = true;
     };
     hyprlock = {
       enable = true;
