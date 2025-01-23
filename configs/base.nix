@@ -21,21 +21,24 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  networking.hostName = "omnipc";
   networking = {
-    networkmanager.enable = true;
-  };
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      General = {
-        EnableNetworkConfiguration = true;
-      };
-      Network = {
-        EnableIPv6 = true;
-      };
-      Scan = {
-        DisablePeriodicScan = true;
+    hostName = "omnipc";
+    networkmanager = {
+      enable = true;
+      insertNameservers = ["1.1.1.1" "1.0.0.1"];
+    };
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        General = {
+          EnableNetworkConfiguration = true;
+        };
+        Network = {
+          EnableIPv6 = true;
+        };
+        Scan = {
+          DisablePeriodicScan = true;
+        };
       };
     };
   };
