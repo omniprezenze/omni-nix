@@ -29,6 +29,8 @@
       rofi-wayland
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
+
+      cava
       
       amdgpu_top
       piper # frontend for ratbag (mouse settings)
@@ -62,7 +64,7 @@
     };
     mpd.enable = true;
     tumbler.enable = true;
-    hypridle.enable = true;
+    #hypridle.enable = true;
     ratbagd.enable = true;
     greetd = {
       enable = true;
@@ -110,12 +112,12 @@
     };
   };
 
+  # Without these bootlogs will spam on screen
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
     StandardInput = "tty";
     StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
+    StandardError = "journal";
     TTYReset = true;
     TTYVHangup = true;
     TTYVTDisallocate = true;
