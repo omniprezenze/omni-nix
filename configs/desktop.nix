@@ -8,20 +8,18 @@
       iwgtk # wifi management
 
       psmisc
-      grim
-      slurp
-      swappy
       wl-clipboard
       wl-clip-persist
       xdg-utils
-      wtype
-      wlrctl
+
+      # command control/automation
+      # wtype
+      # wlrctl
+      dotool
 
       playerctl
 
       nwg-look
-      glib
-      gsettings-desktop-schemas
       bibata-cursors
 
       wlogout
@@ -29,6 +27,7 @@
       rofi-wayland
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
+      hyprshot # screenshots
 
       cava
       
@@ -39,11 +38,10 @@
       mpv # media player
       imv # image viewer
       hiddify-app # vpn
-      kdePackages.kdenlive #video editor
+      pinta # paint
+      gnome-text-editor # notepad
     ];
     sessionVariables = {
-      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-
       NIXOS_OZONE_WL = "1"; # for electron and chromium apps to run on wayland
       MOZ_ENABLE_WAYLAND = "1"; # firefox should always run on wayland
 

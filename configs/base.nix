@@ -89,7 +89,9 @@
       syntaxHighlighting.enable = true;
       ohMyZsh = {
         enable = true;
+        theme = "robbyrussell";
         plugins = [
+          "git"
           "direnv"
           "fancy-ctrl-z"
           ];

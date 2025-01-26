@@ -16,7 +16,7 @@
       vscodium
       obsidian
       qalculate-gtk
-      dotool
+      shotcut
 
       pcsx2
       duckstation

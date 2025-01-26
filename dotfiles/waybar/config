@@ -95,13 +95,13 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "uwsm app -- pavucontrol"
     },
     "custom/weather" : {
         "tooltip" : true,
         "format" : "{}°",
         "interval" : 600,
-        "exec" : "wttrbar --location krakow",
+        "exec" : "uwsm app -- wttrbar --location krakow",
         "return-type" : "json"
     },
     "custom/notification": {
@@ -119,9 +119,9 @@
         },
         "return-type": "json",
         "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "sleep 0.1 && swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
+        "exec": "uwsm app -- swaync-client -swb",
+        "on-click": "sleep 0.1 && uwsm app -- swaync-client -t -sw",
+        "on-click-right": "uwsm app -- swaync-client -d -sw",
         "escape": true
     },
     "hyprland/language": {
@@ -135,6 +135,6 @@
     },
     "custom/bt": {
         "format": "󰂯",
-        "on-click": "blueman-manager"
+        "on-click": "uwsm app -- blueman-manager"
     }
 }

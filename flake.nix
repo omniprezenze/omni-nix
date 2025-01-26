@@ -26,7 +26,7 @@
           ./configs/apps.nix
           ./configs/libvirt.nix
           ./configs/steam.nix
-          ./packages/scripts/screenshot.nix
+          #./packages/scripts/screenshot.nix
           ./configs/aagl.nix
         ];
       };
