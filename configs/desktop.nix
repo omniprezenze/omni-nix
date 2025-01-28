@@ -28,6 +28,7 @@
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
       hyprshot # screenshots
+      morgen
 
       cava
       

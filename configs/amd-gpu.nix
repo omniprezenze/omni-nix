@@ -1,9 +1,4 @@
 {pkgs, ...}: {
-
-  # services.xserver = {
-  #   enable = true;
-  #   videoDrivers = [ "amdgpu" ];
-  # };
     
   boot.initrd.kernelModules = [ "amdgpu" ];
 
