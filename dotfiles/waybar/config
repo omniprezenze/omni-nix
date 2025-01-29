@@ -40,7 +40,7 @@
     "clock": {
         "tooltip-format": "<span size='10pt' font='Fira Code'>{calendar}</span>",
         "format": " {:%R  %d-%b}",
-        "on-click": "uwsm app -- morgen",
+        "on-click": "uwsm app -- kitty -e calcure",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -75,7 +75,7 @@
         "interface": "wlan0",
         "on-click": "uwsm app -- iwgtk",
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-disconnected": "",
+        "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-disconnected": "Disconnected",

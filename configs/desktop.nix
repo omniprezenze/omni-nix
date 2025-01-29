@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, ... }: {
     
   environment = {
     systemPackages = with pkgs; [
@@ -28,7 +28,8 @@
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
       hyprshot # screenshots
-      morgen
+
+      calcure #calendar
 
       cava
       
@@ -104,6 +105,8 @@
       enable = true;
       xwayland.enable = true;
       withUWSM = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     hyprlock = {
       enable = true;
@@ -126,7 +129,7 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
+        #xdg-desktop-portal-hyprland
       ];
       xdgOpenUsePortal = true;
   };

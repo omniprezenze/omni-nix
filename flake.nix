@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    hyprland.url = "github:hyprwm/Hyprland";
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
