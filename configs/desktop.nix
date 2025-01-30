@@ -30,6 +30,8 @@
       hyprshot # screenshots
 
       calcure #calendar
+      
+       ventoy-full
 
       cava
       
@@ -63,7 +65,7 @@
       implementation = "broker";
     };
     mpd.enable = true;
-    tumbler.enable = true;
+    udisks2.enable = true;
     #hypridle.enable = true;
     ratbagd.enable = true;
     greetd = {
@@ -93,6 +95,7 @@
       enable = true;
       plugins = [
           pkgs.xfce.thunar-archive-plugin
+          pkgs.xfce.tumbler
       ];
     };
     corectrl = {

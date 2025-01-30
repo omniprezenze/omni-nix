@@ -74,6 +74,12 @@
       XKB_DEFAULT_LAYOUT = "us,ru";
       XKB_DEFAULT_OPTIONS = "altwin:menu_win, grp:ctrl_space_toggle";
     };
+    shellAliases = {
+      kbc = "kubectl";
+      ip = "ip --color";
+      usb-mount = "udisksctl mount -b";
+      usb-unmount = "udisksctl unmount -b";
+    };
   };
 
   services.udisks2.enable = true;
