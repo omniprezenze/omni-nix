@@ -28,10 +28,12 @@
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
       hyprshot # screenshots
+      hyprutils
+      hyprpolkitagent
 
       calcure #calendar
       
-       ventoy-full
+      ventoy-full
 
       cava
       
