@@ -155,6 +155,7 @@
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
       warn-dirty = false;
       substituters = ["https://ezkea.cachix.org" "https://hyprland.cachix.org" ];
       trusted-public-keys = [
