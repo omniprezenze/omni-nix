@@ -4,9 +4,9 @@
     "height": 38, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["custom/power", "custom/weather", "hyprland/workspaces"],
+    "modules-left": ["custom/power", "cpu", "memory", "temperature", "network", "custom/bt", "systemd-failed-units", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["hyprland/language", "tray", "systemd-failed-units", "pulseaudio", "cpu", "temperature", "network", "custom/bt", "custom/notification", "clock"],
+    "modules-right": ["hyprland/language", "tray", "pulseaudio", "custom/weather", "clock", "custom/notification"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "on-click": "activate",
@@ -57,7 +57,6 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false,
         "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
     },
     "memory": {
@@ -66,10 +65,12 @@
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e amdgpu_top --dark\"",
         "critical-threshold": 95,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
-        "interval": 1
+        "interval": 1,
+        "tooltip": false
     },
     "network": {
         "interface": "wlan0",
@@ -137,6 +138,7 @@
     "on-click": "wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"
     },
     "custom/bt": {
+        "tooltip": false,
         "format": "󰂯",
         "on-click": "uwsm app -- blueman-manager"
     },

@@ -25,7 +25,7 @@
     hostName = "omnipc";
     networkmanager = {
       enable = true;
-      insertNameservers = ["1.1.1.1" "1.0.0.1"];
+      #insertNameservers = ["1.1.1.1" "1.0.0.1"];
     };
     wireless.iwd = {
       enable = true;
@@ -60,6 +60,7 @@
       ripgrep # command-line search tool that recursively searches directories for regex patterns
       unrar
       unzip
+      p7zip
       vulkan-tools
       helvum
       qpwgraph
