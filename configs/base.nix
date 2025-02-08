@@ -23,9 +23,18 @@
 
   networking = {
     hostName = "omnipc";
+    enableIPv6 = false;
     networkmanager = {
       enable = true;
-      #insertNameservers = ["1.1.1.1" "1.0.0.1"];
+      insertNameservers = ["1.1.1.1" "1.0.0.1"];
+    };
+    extraHosts = "
+      192.168.88.233 deepseek.lan
+      192.168.88.1 router.lan
+    ";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [9443 11434];
     };
     wireless.iwd = {
       enable = true;
@@ -34,7 +43,7 @@
           EnableNetworkConfiguration = true;
         };
         Network = {
-          EnableIPv6 = true;
+          EnableIPv6 = false;
         };
         Scan = {
           DisablePeriodicScan = true;
@@ -155,6 +164,7 @@
 
   nix = {
     settings = {
+      allowed-users = ["@wheel"];
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
       warn-dirty = false;

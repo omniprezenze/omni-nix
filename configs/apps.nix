@@ -36,7 +36,10 @@
   # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
   # activate and use the Python virtual environment as usual and install dependencies
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
   services = { 
     ollama = {
       enable = true;
