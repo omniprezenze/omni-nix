@@ -5,7 +5,6 @@
     initrd = {
       systemd.enable = true;
     };
-
     kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 3;
     loader = {
@@ -34,7 +33,10 @@
     ";
     firewall = {
       enable = true;
-      allowedTCPPorts = [9443 11434];
+      allowedTCPPorts = [
+        9443 # webui panel
+        11434 # ollama
+        ];
     };
     wireless.iwd = {
       enable = true;
@@ -87,6 +89,7 @@
     shellAliases = {
       kbc = "kubectl";
       ip = "ip --color";
+      kssh = "kitten ssh";
       usb-mount = "udisksctl mount -b";
       usb-unmount = "udisksctl unmount -b";
     };

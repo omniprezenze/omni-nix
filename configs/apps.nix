@@ -17,11 +17,13 @@
       obsidian
       qalculate-gtk
       shotcut
+      hiddify-app
 
       pcsx2
       duckstation
       ryujinx-greemdev
       rpcs3
+
 
       python3
       go

@@ -42,7 +42,6 @@
       zathura # pdf reader
       mpv # media player
       imv # image viewer
-      hiddify-app # vpn
       pinta # paint
       gnome-text-editor # notepad
     ];
