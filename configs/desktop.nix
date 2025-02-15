@@ -30,6 +30,8 @@
       hyprshot # screenshots
       hyprpolkitagent
 
+      wayvnc
+
       calcure #calendar
       
       ventoy-full
