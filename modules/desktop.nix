@@ -91,6 +91,10 @@
   security.pam.services.hyprlock = {};
 
   programs = { 
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     direnv.enable = true;
     file-roller.enable = true;
     dconf.enable = true;
