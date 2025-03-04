@@ -24,6 +24,8 @@
       ryujinx-greemdev
       rpcs3
 
+      # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
+      # activate and use the Python virtual environment as usual and install dependencies
       python3
       pipx
 
@@ -34,8 +36,8 @@
       kubectl
       terraform
     ];
+    shellAliases = {
+      kbc = "kubectl";
+    };
   };
-  # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
-  # activate and use the Python virtual environment as usual and install dependencies
-
 }
