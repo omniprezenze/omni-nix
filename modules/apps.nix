@@ -8,6 +8,7 @@
       obs-studio
       path-of-building
       qbittorrent
+      
       vesktop
       wine64
       bottles
