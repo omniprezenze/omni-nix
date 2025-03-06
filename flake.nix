@@ -8,9 +8,10 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
-  outputs = { self, nixpkgs, aagl, nixos-hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, aagl, nixos-hardware, nix-gaming, ... }@inputs: {
     nixosConfigurations = {
       omnilaptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};

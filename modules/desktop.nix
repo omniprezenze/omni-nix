@@ -2,9 +2,10 @@
     
   environment = {
     systemPackages = with pkgs; [
-      
-      hyprpaper # wallpaper daemon
-      
+      fastfetch
+
+      vulkan-tools
+
       iwgtk # wifi management
 
       psmisc
@@ -22,6 +23,7 @@
       nwg-look
       bibata-cursors
 
+      hyprpaper
       wlogout
       waybar
       rofi-wayland
@@ -39,7 +41,7 @@
       cava
       
       piper # frontend for ratbag (mouse settings)
-      firefox
+      
       zathura # pdf reader
       mpv # media player
       imv # image viewer
@@ -91,6 +93,7 @@
   security.pam.services.hyprlock = {};
 
   programs = { 
+    firefox.enable = true;
     appimage = {
       enable = true;
       binfmt = true;

@@ -59,11 +59,10 @@
 
   environment = {
     systemPackages = with pkgs; [
+      tcpdump
       impala
       vim
-      fastfetch
       btop
-      firefox
       kitty # terminal emulator 
       nil
       nomacs # basic image editor
@@ -71,9 +70,6 @@
       unrar
       unzip
       p7zip
-      vulkan-tools
-      helvum
-      qpwgraph
       tree
       lm_sensors
       jq
