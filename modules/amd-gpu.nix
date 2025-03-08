@@ -12,6 +12,7 @@
       amdgpu_top
     ];
   };
+
   services = { 
     ollama = {
       enable = true;
