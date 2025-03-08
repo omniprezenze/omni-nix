@@ -17,6 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     mangohud
+    mangojuice
   ];
 
   hardware.xone.enable = true;
