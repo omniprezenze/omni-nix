@@ -27,6 +27,7 @@
       wlogout
       waybar
       rofi-wayland
+      fuzzel
       swaynotificationcenter # notification center for sway
       wttrbar # weather information display
       hyprshot # screenshots
