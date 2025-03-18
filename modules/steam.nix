@@ -18,8 +18,17 @@
   environment.systemPackages = with pkgs; [
     mangohud
     mangojuice
+    evtest
   ];
 
   hardware.xone.enable = true;
+  # dualshock touchpad fix
+  services.udev.extraRules = ''
+    # Disable DS4 touchpad acting as mouse
+    # USB
+    ATTRS{name}=="Sony Computer Entertainment Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    # Bluetooth
+    ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+  '';
 
 }

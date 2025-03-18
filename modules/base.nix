@@ -74,6 +74,7 @@
       lm_sensors
       jq
       dig
+      wget
     ];
     shells = [pkgs.zsh];
     variables = {

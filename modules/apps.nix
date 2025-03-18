@@ -36,6 +36,7 @@
       ansible
       kubectl
       terraform
+      linode-cli
     ];
     shellAliases = {
       kbc = "kubectl";
