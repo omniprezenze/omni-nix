@@ -10,6 +10,7 @@
     ../../modules/virtualisation.nix
     ../../modules/steam.nix
     ../../modules/aagl.nix
+    ../../modules/blocky.nix
   ];
 
   system.stateVersion = "24.05";

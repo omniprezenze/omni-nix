@@ -23,7 +23,6 @@
     enableIPv6 = false;
     networkmanager = {
       enable = true;
-      insertNameservers = ["1.1.1.1" "1.0.0.1"];
     };
     extraHosts = "
       192.168.88.233 deepseek.lan
@@ -35,7 +34,7 @@
         9443 # webui panel
         11434 # ollama
         5900 # vnc
-        ];
+      ];
     };
     wireless.iwd = {
       enable = true;

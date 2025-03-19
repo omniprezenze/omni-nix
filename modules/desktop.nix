@@ -59,6 +59,7 @@
       HYPRLAND_LOG_WLR = 1;
       XCURSOR_SIZE = 24;
       HYPRCURSOR_SIZE = 24;
+      HYPRCURSOR_THEME = "Bibata-Modern-Ice";
     };
     shellAliases = {
       hyprland-logout = "loginctl terminate-user \"\"";
