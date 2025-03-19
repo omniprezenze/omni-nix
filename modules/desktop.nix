@@ -7,6 +7,7 @@
       vulkan-tools
 
       iwgtk # wifi management
+      winbox # routeros client
 
       psmisc
       wl-clipboard
