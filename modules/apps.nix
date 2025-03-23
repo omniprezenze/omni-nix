@@ -4,14 +4,11 @@
       keepassxc
       rclone
       gimp
-      lutris
       obs-studio
       path-of-building
       qbittorrent
       
       vesktop
-      wine64
-      bottles
       telegram-desktop
       spotify
       vscodium
@@ -25,9 +22,21 @@
       ryujinx-greemdev
       rpcs3
 
+      protonplus
+      winetricks
+      #bottles 
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
       # activate and use the Python virtual environment as usual and install dependencies
-      python3
+      (python313.withPackages (ps:
+        with ps; [
+          flask
+          pandas
+          requests
+          pyquery
+          pyyaml
+          tenacity
+        ]
+      ))
       pipx
 
       go
@@ -42,4 +51,5 @@
       kbc = "kubectl";
     };
   };
+  services.flatpak.enable = true;
 }

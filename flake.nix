@@ -26,6 +26,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/omnipc
+          #./overlays
         ];
       };
     };
