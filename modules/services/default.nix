@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./keepass_backup.nix
+    ./hyprpaper.nix
+    ./waybar.nix
+    ./hyprpolkitagent.nix
   ];
 }

@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{ inputs, pkgs, ...}: {
 
   boot = {
     initrd = {
@@ -24,10 +24,6 @@
     networkmanager = {
       enable = true;
     };
-    extraHosts = "
-      192.168.88.233 deepseek.lan
-      192.168.88.1 router.lan
-    ";
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -74,6 +70,7 @@
       jq
       dig
       wget
+      openssl
     ];
     shells = [pkgs.zsh];
     variables = {

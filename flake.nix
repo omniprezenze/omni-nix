@@ -9,12 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, aagl, nixos-hardware, nix-gaming, ... }@inputs: {
+  outputs = { nixpkgs, ... }@inputs: {
     nixosConfigurations = {
       omnilaptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/omnilaptop
@@ -22,10 +23,11 @@
         ];
       };
       omnipc = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/omnipc
+          ./modules/services/default.nix
           #./overlays
         ];
       };

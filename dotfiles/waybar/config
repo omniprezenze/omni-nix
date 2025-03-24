@@ -40,7 +40,7 @@
     "clock": {
         "tooltip-format": "<span size='10pt' font='Fira Code'>{calendar}</span>",
         "format": " {:%R  %d-%b}",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e calcure\"",
+        "on-click": "/run/current-system/sw/bin/hyprctl dispatch exec \"[float;size 1539 940;center] /run/current-system/sw/bin/kitty -e /run/current-system/sw/bin/calcure\"",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -57,15 +57,15 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
+        "on-click": "/run/current-system/sw/bin/hyprctl dispatch exec \"[float;size 1539 940;center] /run/current-system/sw/bin/kitty -e /run/current-system/sw/bin/btop\""
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
+        "on-click": "/run/current-system/sw/bin/hyprctl dispatch exec \"[float;size 1539 940;center] /run/current-system/sw/bin/kitty -e /run/current-system/sw/bin/btop\""
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e amdgpu_top --dark\"",
+        "on-click": "/run/current-system/sw/bin/hyprctl dispatch exec \"[float;size 1539 940;center] /run/current-system/sw/bin/kitty -e /run/current-system/sw/bin/amdgpu_top --dark\"",
         "critical-threshold": 95,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
@@ -74,7 +74,7 @@
     },
     "network": {
         "interface": "wlan0",
-        "on-click": "uwsm app -- iwgtk",
+        "on-click": "/run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/iwgtk",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
@@ -99,13 +99,13 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "uwsm app -- pavucontrol"
+        "on-click": "/run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/pavucontrol"
     },
     "custom/weather": {
         "tooltip": true,
         "format": "{}°",
         "interval": 600,
-        "exec": "uwsm app -- wttrbar --location krakow",
+        "exec": "/run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/wttrbar --location krakow",
         "return-type": "json"
     },
     "custom/notification": {
@@ -122,10 +122,10 @@
           "dnd-inhibited-none": ""
         },
         "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "uwsm app -- swaync-client -swb",
-        "on-click": "sleep 0.1 && uwsm app -- swaync-client -t -sw",
-        "on-click-right": "uwsm app -- swaync-client -d -sw",
+        "exec-if": "/run/current-system/sw/bin/which /run/current-system/sw/bin/swaync-client",
+        "exec": "/run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/swaync-client -swb",
+        "on-click": "/run/current-system/sw/bin/sleep 0.1 && /run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/swaync-client -t -sw",
+        "on-click-right": "/run/current-system/sw/binuwsm-app -- /run/current-system/sw/bin/swaync-client -d -sw",
         "escape": true
     },
     "hyprland/language": {
@@ -135,12 +135,12 @@
     },
     "custom/power": {
 	"format": "⏻",
-    "on-click": "wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"
+    "on-click": "/run/current-system/sw/bin/wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"
     },
     "custom/bt": {
         "tooltip": false,
         "format": "󰂯",
-        "on-click": "uwsm app -- blueman-manager"
+        "on-click": "/run/current-system/sw/bin/uwsm-app -- /run/current-system/sw/bin/blueman-manager"
     },
     "systemd-failed-units": {
         "hide-on-ok": false, // Do not hide if there is zero failed units.

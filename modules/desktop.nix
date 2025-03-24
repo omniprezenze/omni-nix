@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, ... }: {
+{  inputs, pkgs, lib, config, ... }: {
     
   environment = {
     systemPackages = with pkgs; [
@@ -119,8 +119,10 @@
     };
     hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       xwayland.enable = true;
       withUWSM = true;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     hyprlock = {
       enable = true;

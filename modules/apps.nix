@@ -44,6 +44,8 @@
 
       ansible
       kubectl
+      kubernetes-helm
+      kubecm
       terraform
       linode-cli
     ];
