@@ -32,6 +32,7 @@
       wttrbar # weather information display
       hyprshot # screenshots
       hyprpolkitagent
+      hyprland-qtutils
 
       wayvnc
 
@@ -64,6 +65,7 @@
     };
     shellAliases = {
       hyprland-logout = "loginctl terminate-user \"\"";
+      hdrmpv = "ENABLE_HDR_WSI=1 mpv --vo=gpu-next --target-colorspace-hint --gpu-api=vulkan --gpu-context=waylandvk";
     };
   };
 
