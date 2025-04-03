@@ -71,6 +71,7 @@
       dig
       wget
       openssl
+      smartmontools
     ];
     shells = [pkgs.zsh];
     variables = {
