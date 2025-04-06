@@ -74,7 +74,7 @@
     },
     "network": {
         "interface": "wlan0",
-        "on-click": "uwsm-app -- iwgtk",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e impala\"",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",

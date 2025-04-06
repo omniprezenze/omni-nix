@@ -32,20 +32,7 @@
         5900 # vnc
       ];
     };
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        General = {
-          EnableNetworkConfiguration = true;
-        };
-        Network = {
-          EnableIPv6 = false;
-        };
-        Scan = {
-          DisablePeriodicScan = true;
-        };
-      };
-    };
+    wireless.iwd.enable = true;
   };
 
   nixpkgs = {
@@ -72,6 +59,7 @@
       wget
       openssl
       smartmontools
+      file
     ];
     shells = [pkgs.zsh];
     variables = {

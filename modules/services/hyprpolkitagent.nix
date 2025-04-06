@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  systemd.user.services.hyprpolkitagent = {
+  systemd.user.services.hyprpolkitagent-c = {
     wantedBy = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];

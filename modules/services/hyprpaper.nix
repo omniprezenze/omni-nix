@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  systemd.user.services.hyprpaper = {
+  systemd.user.services.hyprpaper-c = {
     description = "Fast, IPC-controlled wallpaper utility for Hyprland.";
     documentation = [ "https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/" ];
     partOf = [ "graphical-session.target" ];

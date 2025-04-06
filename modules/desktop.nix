@@ -6,7 +6,7 @@
 
       vulkan-tools
 
-      iwgtk # wifi management
+      #iwgtk # wifi management
       winbox # routeros client
 
       psmisc
