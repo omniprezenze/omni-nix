@@ -140,7 +140,7 @@
     "custom/bt": {
         "tooltip": false,
         "format": "󰂯",
-        "on-click": "uwsm-app -- blueman-manager"
+        "on-click": "uwsm-app -- overskride"
     },
     "systemd-failed-units": {
         "hide-on-ok": false, // Do not hide if there is zero failed units.

@@ -3,11 +3,17 @@
   environment = {
     systemPackages = with pkgs; [
       fastfetch
+      btop
 
       vulkan-tools
 
       #iwgtk # wifi management
       winbox # routeros client
+
+      kitty # terminal emulator
+      ghostty
+      
+      sassc
 
       psmisc
       wl-clipboard
@@ -24,6 +30,7 @@
       nwg-look
       bibata-cursors
 
+      hyprpicker
       hyprpaper
       wlogout
       waybar
