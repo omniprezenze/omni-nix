@@ -1,9 +1,10 @@
-{pkgs, ...}: {
+{inputs, pkgs, ...}: {
+  nixpkgs.overlays = [inputs.oskars-dotfiles.overlays.spotx];
   environment = with pkgs; {
     systemPackages = [
       keepassxc
       rclone
-      gimp
+      gimp3
       obs-studio
       path-of-building
       qbittorrent
@@ -20,11 +21,16 @@
       pcsx2
       duckstation
       ryujinx-greemdev
-      rpcs3
+      #rpcs3
 
       protonplus
       winetricks
-      bottles 
+      (lutris.override {
+        extraPkgs = pkgs: [
+          umu-launcher
+          wineWowPackages.waylandFull
+        ];
+      })
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
       # activate and use the Python virtual environment as usual and install dependencies
       (python313.withPackages (ps:

@@ -9,8 +9,10 @@
 
       #iwgtk # wifi management
       winbox # routeros client
+      xdg-utils
+      selectdefaultapplication
 
-      kitty # terminal emulator
+      # terminal emulator
       ghostty
       
       sassc
@@ -43,6 +45,8 @@
 
       wayvnc
 
+      pacvim
+      
       calcure #calendar
       
       ventoy-full
@@ -69,6 +73,7 @@
       XCURSOR_SIZE = 24;
       HYPRCURSOR_SIZE = 24;
       HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+      TERMINAL = "ghostty";
     };
     shellAliases = {
       hyprland-logout = "loginctl terminate-user \"\"";
@@ -83,7 +88,7 @@
     };
     mpd.enable = true;
     udisks2.enable = true;
-    #hypridle.enable = true;
+    tumbler.enable = true; # thunar Thumbnail support for images
     ratbagd.enable = true;
     greetd = {
       enable = true;

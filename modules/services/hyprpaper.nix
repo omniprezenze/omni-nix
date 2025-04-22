@@ -11,7 +11,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
+      ExecStart = "/run/current-system/sw/bin/hyprpaper";
       Slice = "session.slice";
       Restart = "on-failure";
     };

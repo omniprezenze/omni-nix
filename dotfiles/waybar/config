@@ -22,6 +22,7 @@
             "class<ArmCord>": "󰙯",
             "class<vesktop>": "󰙯",
             "class<kitty>": "",
+            "class<com.mitchellh.ghostty>": "",
             "class<steam>": "󰓓",
             "class<Thunar>": ""
         }
@@ -40,7 +41,7 @@
     "clock": {
         "tooltip-format": "<span size='10pt' font='Fira Code'>{calendar}</span>",
         "format": " {:%R  %d-%b}",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e calcure\"",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e calcure\"",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -57,15 +58,15 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e btop\""
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e btop\""
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e btop\""
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e amdgpu_top --dark\"",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e amdgpu_top --dark\"",
         "critical-threshold": 95,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
@@ -74,7 +75,7 @@
     },
     "network": {
         "interface": "wlan0",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] kitty -e impala\"",
+        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e impala\"",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",

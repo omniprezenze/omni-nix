@@ -103,9 +103,12 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  # };
+  console = {
+    font = "ter-124b";
+    packages = with pkgs; [
+      terminus_font
+    ];
+  };
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
@@ -128,22 +131,26 @@
   };
 
   fonts = {
+    fontDir.enable = true;
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = ["Noto Serif" "Noto Color Emoji"];
+        serif = [ "Noto Serif" ];
         sansSerif = ["Noto Sans" "Noto Color Emoji"];
-        monospace = ["Fira Code" "MesloLGS NF" "Noto Color Emoji"];
-        emoji = ["Noto Sans" "Noto Color Emoji"];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Uiua386"
+        ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
     packages = with pkgs; [
-      dejavu_fonts
-      fira-code
-      meslo-lgs-nf
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
       noto-fonts
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-cjk-serif
     ];
   };
 

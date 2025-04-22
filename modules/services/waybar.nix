@@ -10,7 +10,7 @@
     path = [ "/run/current-system/sw" ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.waybar}/bin/waybar";
+      ExecStart = "/run/current-system/sw/bin/waybar";
       ExecReload = "kill -SIGUSR2 $MAINPID";
       Restart = "on-failure";
     };
