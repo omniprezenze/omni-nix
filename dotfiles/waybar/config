@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["custom/power", "cpu", "memory", "temperature", "network", "custom/bt", "systemd-failed-units", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["hyprland/language", "tray", "pulseaudio", "custom/weather", "clock", "custom/notification"],
+    "modules-right": ["hyprland/language", "tray", "custom/audio_idle_inhibitor", "pulseaudio", "custom/weather", "clock", "custom/notification"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "on-click": "activate",
@@ -143,6 +143,18 @@
         "format": "󰂯",
         "on-click": "uwsm-app -- overskride"
     },
+    "custom/audio_idle_inhibitor": {
+		"format": "{icon}",
+		"exec": "sway-audio-idle-inhibit --dry-print-both-waybar",
+		"exec-if": "which sway-audio-idle-inhibit",
+		"return-type": "json",
+		"format-icons": {
+			"output": "",
+			"input": "",
+			"output-input": "  ",
+			"none": ""
+		}
+	},
     "systemd-failed-units": {
         "hide-on-ok": false, // Do not hide if there is zero failed units.
         "format": "✗ {nr_failed}",

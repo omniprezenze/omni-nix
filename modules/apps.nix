@@ -9,6 +9,8 @@
       path-of-building
       qbittorrent
       
+      wayvnc
+
       vesktop
       telegram-desktop
       spotify

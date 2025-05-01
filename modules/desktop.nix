@@ -42,8 +42,7 @@
       hyprshot # screenshots
       hyprpolkitagent
       hyprland-qtutils
-
-      wayvnc
+      sway-audio-idle-inhibit
 
       pacvim
       
@@ -76,6 +75,7 @@
       TERMINAL = "ghostty";
     };
     shellAliases = {
+      restart-sound   = "systemctl --user restart pipewire{,-pulse} wireplumber";
       hyprland-logout = "loginctl terminate-user \"\"";
       hdrmpv = "ENABLE_HDR_WSI=1 mpv --vo=gpu-next --target-colorspace-hint --gpu-api=vulkan --gpu-context=waylandvk";
     };
