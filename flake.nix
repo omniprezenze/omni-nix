@@ -10,10 +10,6 @@
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     hyprland.url = "github:hyprwm/Hyprland";
-    oskars-dotfiles = {
-      url = "github:oskardotglobal/.dotfiles/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, ... }@inputs: {

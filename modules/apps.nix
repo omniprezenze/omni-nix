@@ -1,5 +1,4 @@
 {inputs, pkgs, ...}: {
-  nixpkgs.overlays = [inputs.oskars-dotfiles.overlays.spotx];
   environment = with pkgs; {
     systemPackages = [
       keepassxc
@@ -23,6 +22,7 @@
       pcsx2
       duckstation
       ryujinx-greemdev
+      wowup-cf
       #rpcs3
 
       protonplus

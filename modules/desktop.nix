@@ -42,7 +42,7 @@
       hyprshot # screenshots
       hyprpolkitagent
       hyprland-qtutils
-      sway-audio-idle-inhibit
+      #sway-audio-idle-inhibit
 
       pacvim
       
