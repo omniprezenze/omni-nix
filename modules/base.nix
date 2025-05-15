@@ -61,6 +61,7 @@
       openssl
       smartmontools
       file
+      patchelf
     ];
     shells = [pkgs.zsh];
     variables = {

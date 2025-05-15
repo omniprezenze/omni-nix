@@ -61,4 +61,5 @@
       kbc = "kubectl";
     };
   };
+  services.flatpak.enable = true;
 }

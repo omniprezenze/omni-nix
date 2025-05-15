@@ -48,8 +48,6 @@
       
       calcure #calendar
       
-      ventoy-full
-
       cava
       
       piper # frontend for ratbag (mouse settings)
