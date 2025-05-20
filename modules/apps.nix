@@ -5,7 +5,6 @@
       rclone
       gimp3
       obs-studio
-      path-of-building
       qbittorrent
       
       wayvnc
