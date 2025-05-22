@@ -8,6 +8,7 @@
       qbittorrent
       
       wayvnc
+      wireshark
 
       vesktop
       telegram-desktop

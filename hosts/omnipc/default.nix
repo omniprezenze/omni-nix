@@ -9,7 +9,7 @@
     ../../modules/apps.nix
     ../../modules/virtualisation.nix
     ../../modules/steam.nix
-    ../../modules/aagl.nix
+#    ../../modules/aagl.nix
   ];
 
   system.stateVersion = "24.05";

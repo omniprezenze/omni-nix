@@ -86,6 +86,7 @@
     };
     mpd.enable = true;
     udisks2.enable = true;
+    gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # thunar Thumbnail support for images
     ratbagd.enable = true;
     greetd = {
@@ -121,6 +122,7 @@
       plugins = [
           pkgs.xfce.thunar-archive-plugin
           pkgs.xfce.tumbler
+          pkgs.xfce.thunar-volman
       ];
     };
     corectrl = {
