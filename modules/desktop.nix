@@ -31,6 +31,7 @@
 
       nwg-look
       bibata-cursors
+      kdePackages.qt6ct
 
       hyprpicker
       hyprpaper
@@ -71,6 +72,7 @@
       HYPRCURSOR_SIZE = 24;
       HYPRCURSOR_THEME = "Bibata-Modern-Ice";
       TERMINAL = "ghostty";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
     };
     shellAliases = {
       restart-sound   = "systemctl --user restart pipewire{,-pulse} wireplumber";
