@@ -17,7 +17,7 @@
       obsidian
       qalculate-gtk
       shotcut
-      hiddify-app
+      #hiddify-app
 
       pcsx2
       duckstation
