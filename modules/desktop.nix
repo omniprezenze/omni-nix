@@ -105,17 +105,6 @@
       ratbagd.enable = true;
       greetd = {
         enable = true;
-        # settings.default_session = {
-        #   user = "greeter";
-        #   command = lib.strings.concatStringsSep " " [
-        #     "${pkgs.greetd.tuigreet}/bin/tuigreet"
-        #     "--time"
-        #     "--remember"
-        #     "--asterisks"
-        #     "--user-menu"
-        #     "--cmd \"/run/current-system/sw/bin/uwsm start -- hyprland-uwsm.desktop -c ~/.config/hypr/hyprland_${config.networking.hostName}.conf\""
-        #   ];
-        # };
       };
     };
 
@@ -193,11 +182,11 @@
     };
 
     xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-        ];
-        xdgOpenUsePortal = true;
-        wlr.enable = true;
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+      xdgOpenUsePortal = true;
+      wlr.enable = true;
     };
   }
