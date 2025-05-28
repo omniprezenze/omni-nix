@@ -14,4 +14,6 @@
 
   system.stateVersion = "24.05";
   networking.hostName = "omnipc";
+  services.fstrim.enable = true; # ssd trimming
+
 }
