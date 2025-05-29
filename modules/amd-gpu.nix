@@ -1,10 +1,12 @@
 { pkgs, ...}: {
     
   boot.initrd.kernelModules = [ "amdgpu" ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    amdgpu.overdrive.enable = true;
   };
   
   environment = {

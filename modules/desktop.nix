@@ -130,9 +130,6 @@
       };
       corectrl = {
         enable = true;
-        gpuOverclock = { 
-            enable = true;
-        };
       };
       hyprland = {
         enable = true;
@@ -144,6 +141,7 @@
         enable = true;
         wrapperFeatures.gtk = true;
         xwayland.enable = true;
+        #package = pkgs.swayfx; 
       };
       uwsm = {
         enable = true;

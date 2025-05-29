@@ -19,7 +19,7 @@
     evtest
   ];
 
-  hardware.xone.enable = true;
+  #hardware.xone.enable = true;
   # dualshock touchpad fix
   services.udev.extraRules = ''
     # Disable DS4 touchpad acting as mouse
