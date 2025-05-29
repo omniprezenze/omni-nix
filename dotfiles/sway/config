@@ -1,10 +1,9 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+# `man 5 sway` for a complete reference.
 
-### Variables
+### Execs
+exec_always xrandr --output XWAYLAND0 --primary
+
+### Vars
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -27,6 +26,7 @@ set $menu fuzzel --launch-prefix="uwsm app -- "
 
 output DP-1 pos 0 0 res 2560x1440@180Hz
 output DP-2 pos -1920 0 res 1920x1080@144Hz
+output * adaptive_sync on
 
 ### Idle configuration
 #
@@ -55,26 +55,40 @@ output DP-2 pos -1920 0 res 1920x1080@144Hz
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input * {
+    xkb_layout "us,ru"
+    xkb_options "grp:ctrl_space_toggle"
+}
+
+# input <device name> {
+#     natural_scroll disabled
+#     dwt enabled
+#     accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+#     pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+# }
+
 ### Key bindings
-#
-# Basics:
-#
-    bindsym $mod+q exec $terminal
-    bindsym $mod+F4 kill
+
+# Move/resize windows with mainMod + SHIFT + LMB/RMB and dragging
+floating_modifier $mod normal
+
+bindsym --to-code {
+    $mod+q exec $terminal
+    $mod+F4 kill
     #bindsym $mod+Shift+F12 exec hyprland-logout # Ensure 'hyprland-logout' is a valid command or replace (e.g., with a script using swaynag or wofi)
-    bindsym $mod+e exec $fileManager
-    bindsym $mod+v floating toggle
+    $mod+e exec $fileManager
+    $mod+v floating toggle
 
     # Apps
-    bindsym $mod+space exec $menu
-    bindsym $mod+u fullscreen
-    bindsym $mod+Shift+u exec /home/$USER/.config/hypr/monitor_lock.sh
-    bindsym $mod+Shift+m exec wayvncctl output-cycle
+    $mod+space exec $menu
+    $mod+u fullscreen
+    $mod+Shift+u exec /home/$USER/.config/hypr/monitor_lock.sh
+    $mod+Shift+m exec wayvncctl output-cycle
 
     # PoE Scripts (ensure these scripts are compatible or adapt)
-    bindsym F5 exec /home/$USER/.config/hypr/poe.sh 5
-    bindsym F4 exec /home/$USER/.config/hypr/poe.sh 4
-    bindsym F1 exec /home/$USER/.config/hypr/poe.sh 1
+    F5 exec /home/$USER/.config/hypr/poe.sh 5
+    F4 exec /home/$USER/.config/hypr/poe.sh 4
+    F1 exec /home/$USER/.config/hypr/poe.sh 1
 
     # Etc / Screenshots (using grim and slurp as replacements for hyprshot)
     # Ensure grim, slurp, and wl-copy are installed.
@@ -87,11 +101,6 @@ output DP-2 pos -1920 0 res 1920x1080@144Hz
     #bindsym $mod+l exec swaylock # Or your preferred Wayland locker (e.g., hyprlock if it's Wayland-generic and you have it)
     #bindsym $mod+BackSpace exec wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275 # Ensure wlogout is installed and configured
 
-    # Move/resize windows with mainMod + SHIFT + LMB/RMB and dragging
-    floating_modifier $mod normal
-    #bindsym $mod+Shift+Button3 resize
-
-
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -100,44 +109,44 @@ output DP-2 pos -1920 0 res 1920x1080@144Hz
     #
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    $mod+Shift+c reload
 
     # Exit sway
-    bindsym $mod+Shift+F12 exec hyprland-logout
+    $mod+Shift+F12 exec hyprland-logout
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    $mod+Left focus left
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right focus right
 
 #
 # Workspaces:
 #
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
+    $mod+1 workspace number 1
+    $mod+2 workspace number 2
+    $mod+3 workspace number 3
+    $mod+4 workspace number 4
+    $mod+5 workspace number 5
+    $mod+6 workspace number 6
+    $mod+7 workspace number 7
+    $mod+8 workspace number 8
+    $mod+9 workspace number 9
+    $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    $mod+Shift+1 move container to workspace number 1
+    $mod+Shift+2 move container to workspace number 2
+    $mod+Shift+3 move container to workspace number 3
+    $mod+Shift+4 move container to workspace number 4
+    $mod+Shift+5 move container to workspace number 5
+    $mod+Shift+6 move container to workspace number 6
+    $mod+Shift+7 move container to workspace number 7
+    $mod+Shift+8 move container to workspace number 8
+    $mod+Shift+9 move container to workspace number 9
+    $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -146,13 +155,13 @@ output DP-2 pos -1920 0 res 1920x1080@144Hz
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    $mod+b splith
     #bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+h layout stacking
-    bindsym $mod+k layout tabbed
-    bindsym $mod+j layout toggle split
+    $mod+h layout stacking
+    $mod+k layout tabbed
+    $mod+j layout toggle split
 
     # Toggle the current focus between tiling and floating mode
     #bindsym $mod+Shift+space floating toggle
@@ -169,26 +178,24 @@ output DP-2 pos -1920 0 res 1920x1080@144Hz
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    $mod+minus scratchpad show
 
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
-
+    # # Special keys to adjust volume via PulseAudio
+    # bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    # bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    # bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    # bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # # Special keys to adjust brightness via brightnessctl
+    # bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    # bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+}
 #
 # Status Bar:
 #
