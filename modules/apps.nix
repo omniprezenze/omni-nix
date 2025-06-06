@@ -32,7 +32,6 @@
         extraPkgs = pkgs: [
           umu-launcher
           wineWowPackages.waylandFull
-          gamemode
         ];
       })
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
