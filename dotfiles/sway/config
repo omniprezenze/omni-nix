@@ -1,35 +1,64 @@
 # `man 5 sway` for a complete reference.
 
-### Execs
-exec_always xrandr --output XWAYLAND0 --primary
-
 ### Vars
-#
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-# Home row direction keys, like vim
-# Set apps
-set $terminal uwsm app -- ghostty
-set $fileManager uwsm app -- thunar
-set $menu fuzzel --launch-prefix="uwsm app -- "
+set {
+    $disp1 "DP-1"
+    $disp2 "DP-2"
+
+    $mod Mod4
+
+    $terminal uwsm app -- ghostty
+    $fileManager uwsm app -- thunar
+    $menu fuzzel --launch-prefix="uwsm app -- "
+    $silent_steam steam -silent
+}
+
+### Execs
+exec {
+    systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+    uwsm app -s b -- wl-clip-persist --clipboard regular
+    uwsm app -- corectrl
+    uwsm app -- telegram-desktop -startintray
+    uwsm app -- keepassxc
+    uwsm app -- qbittorrent
+    uwsm app -- $silent_steam
+    uwsm app -- hiddify
+    uwsm app -s b -- wayvnc
+}
+
+### Visuals
+default_border pixel 3
+smart_borders off
+smart_gaps off
+gaps {
+  inner 0
+  outer 0
+}
 
 ### Output configuration
-#
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 # output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output DP-1 pos 0 0 res 2560x1440@180Hz
-output DP-2 pos -1920 0 res 1920x1080@144Hz
-output * adaptive_sync on
+output {
+    $disp1 pos 0 0 res 2560x1440@180Hz
+    $disp2 pos -1920 0 res 1920x1080@144Hz
+    * adaptive_sync on
+    * allow_tearing yes
+    * max_render_time off
+}
+
+# default display outputs for workspaces with fallback to disp1
+workspace {
+    1 output $disp1 
+    2 output $disp1 
+    3 output $disp1 
+    4 output $disp2 
+    5 output $disp2 
+    6 output $disp2
+}
 
 ### Idle configuration
-#
 # Example configuration:
 #
 # exec swayidle -w \
@@ -42,7 +71,6 @@ output * adaptive_sync on
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -55,22 +83,25 @@ output * adaptive_sync on
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input * {
+input type:keyboard {
     xkb_layout "us,ru"
     xkb_options "grp:ctrl_space_toggle"
 }
 
-# input <device name> {
-#     natural_scroll disabled
-#     dwt enabled
-#     accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-#     pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
-# }
+input "1133:50503:Logitech_USB_Receiver" {
+    #left_handed enabled
+    natural_scroll disabled 
+    accel_profile "flat"
+    pointer_accel 1 # set mouse sensitivity (between -1 and 1)
+}
 
 ### Key bindings
 
-# Move/resize windows with mainMod + SHIFT + LMB/RMB and dragging
+# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod normal
+hide_edge_borders --i3 smart
+focus_on_window_activation smart
+force_display_urgency_hint 100
 
 bindsym --to-code {
     $mod+q exec $terminal
@@ -85,46 +116,34 @@ bindsym --to-code {
     $mod+Shift+u exec /home/$USER/.config/hypr/monitor_lock.sh
     $mod+Shift+m exec wayvncctl output-cycle
 
+    $mod+p       exec swaymsg [app_id=$pass_id]   scratchpad show || exec $pass,   $maximize
+
     # PoE Scripts (ensure these scripts are compatible or adapt)
     F5 exec /home/$USER/.config/hypr/poe.sh 5
     F4 exec /home/$USER/.config/hypr/poe.sh 4
     F1 exec /home/$USER/.config/hypr/poe.sh 1
 
-    # Etc / Screenshots (using grim and slurp as replacements for hyprshot)
-    # Ensure grim, slurp, and wl-copy are installed.
-    # Verify if 'uwsm app --' prefix is needed or functional with these commands in your Sway setup.
-    # bindsym $mod+Print exec uwsm app -- grim -g "$(slurp)" - | wl-copy # Region screenshot
-    # bindsym Print exec uwsm app -- grim - | wl-copy # Full output screenshot
-    # bindsym $mod+Shift+Print exec uwsm app -- grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy # Focused window screenshot
+    # Screenshots https://man.archlinux.org/man/grimshot.1.en
+    Print             exec grimshot copy screen
+    $mod+Print        exec grimshot copy area
+    $mod+Shift+Print  exec grimshot copy window
 
     # Lock screen and logout
     #bindsym $mod+l exec swaylock # Or your preferred Wayland locker (e.g., hyprlock if it's Wayland-generic and you have it)
-    #bindsym $mod+BackSpace exec wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275 # Ensure wlogout is installed and configured
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    #
+    $mod+BackSpace exec wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275
 
     # Reload the configuration file
     $mod+Shift+c reload
 
     # Exit sway
-    $mod+Shift+F12 exec hyprland-logout
-#
-# Moving around:
-#
+    $mod+Shift+F12 exec de-logout
+
     # Move your focus around
     $mod+Left focus left
     $mod+Down focus down
     $mod+Up focus up
     $mod+Right focus right
 
-#
-# Workspaces:
-#
     # Switch to workspace
     $mod+1 workspace number 1
     $mod+2 workspace number 2
@@ -147,46 +166,17 @@ bindsym --to-code {
     $mod+Shift+8 move container to workspace number 8
     $mod+Shift+9 move container to workspace number 9
     $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    $mod+b splith
-    #bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    $mod+h layout stacking
-    $mod+k layout tabbed
     $mod+j layout toggle split
 
-    # Toggle the current focus between tiling and floating mode
-    #bindsym $mod+Shift+space floating toggle
-
-    # Swap focus between the tiling area and the floating area
-    #bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
-    #bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
-    $mod+Shift+minus move scratchpad
+    $mod+Shift+s move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    $mod+minus scratchpad show
+    $mod+s scratchpad show
 
-#
-# Utilities:
-#
     # # Special keys to adjust volume via PulseAudio
     # bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     # bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
@@ -196,9 +186,31 @@ bindsym --to-code {
     # bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     # bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 }
-#
+
+### Window Rules
+for_window {
+    [app_id="firefox"] inhibit_idle fullscreen
+    [app_id="mpv"] inhibit_idle fullscreen
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+
+    [app_id="io.github.kaii_lb.Overskride"] floating enable, resize set width 1030 height 710
+    [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set width 1030 height 710
+
+    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+    [title="Unlock Database - KeePassXC"] floating enable, resize set width 1030 height 710
+    [title="MangoJuice"] floating enable, resize set width 1030 height 710
+    [title="wlogout"] fullscreen
+    [class="steam_app_.*"] fullscreen
+    [title="Battle.net"] floating disable
+    [title="^(Path of Building.*)$"] floating disable
+    [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
+
+}
+
 # Status Bar:
-#
 # Read `man 5 sway-bar` for more information about this section.
 # bar {
 #     position top
