@@ -105,6 +105,16 @@
       ratbagd.enable = true;
       greetd = {
         enable = true;
+        settings.default_session = {
+          user = "greeter";
+          command = lib.strings.concatStringsSep " " [
+            "${pkgs.greetd.tuigreet}/bin/tuigreet"
+            "--time"
+            "--remember"
+            "--asterisks"
+            "--user-menu"
+          ];
+        };
       };
     };
 
@@ -161,10 +171,6 @@
       hyprlock = {
         enable = true;
         package = pkgs.hyprlock;
-      };
-      regreet = {
-        enable = true;
-        theme.name = "Everforest-Dark-BL";
       };
     };
 
