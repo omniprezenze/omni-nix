@@ -58,6 +58,7 @@
         #sway-audio-idle-inhibit
 
         pacvim
+        brave
         
         calcure #calendar
         
