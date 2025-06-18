@@ -203,7 +203,10 @@ for_window {
     [class="steam_app_.*"] fullscreen
     [title="Battle.net"] floating disable
     [title="^(Path of Building.*)$"] floating disable
+    [title="^(Unnamed build (Scion) - Path of Building)$"] floating disable
     [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
+
+    [title="^(.*-tui)$"] floating enable, resize set width 1500 height 940
 
 }
 

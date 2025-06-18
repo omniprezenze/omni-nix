@@ -62,7 +62,7 @@
     "clock": {
         "tooltip-format": "<span size='10pt' font='Fira Code'>{calendar}</span>",
         "format": " {:%R  %d-%b %a}",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e calcure\"",
+        "on-click": "calcure-tui",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -79,15 +79,15 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e btop\""
+        "on-click": "btop-tui"
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e btop\""
+        "on-click": "btop-tui"
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e amdgpu_top --dark\"",
+        "on-click": "amdgpu-tui",
         "critical-threshold": 95,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
@@ -96,7 +96,7 @@
     },
     "network": {
         "interface": "wlan0",
-        "on-click": "hyprctl dispatch exec \"[float;size 1539 940;center] ghostty -e impala\"",
+        "on-click": "impala-tui",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
@@ -105,7 +105,6 @@
         "max-length": 50
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
