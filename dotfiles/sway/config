@@ -18,11 +18,10 @@ exec {
     systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
     uwsm app -s b -- wl-clip-persist --clipboard regular
     uwsm app -- corectrl
-    uwsm app -- telegram-desktop -startintray
+    uwsm app -- Telegram -startintray
     uwsm app -- keepassxc
     uwsm app -- qbittorrent
     uwsm app -- $silent_steam
-    uwsm app -- hiddify
     uwsm app -s b -- wayvnc
 }
 
@@ -106,7 +105,6 @@ force_display_urgency_hint 100
 bindsym --to-code {
     $mod+q exec $terminal
     $mod+F4 kill
-    #bindsym $mod+Shift+F12 exec hyprland-logout # Ensure 'hyprland-logout' is a valid command or replace (e.g., with a script using swaynag or wofi)
     $mod+e exec $fileManager
     $mod+v floating toggle
 
@@ -118,15 +116,14 @@ bindsym --to-code {
 
     $mod+p       exec swaymsg [app_id=$pass_id]   scratchpad show || exec $pass,   $maximize
 
-    # PoE Scripts (ensure these scripts are compatible or adapt)
-    F5 exec /home/$USER/.config/hypr/poe.sh 5
-    F4 exec /home/$USER/.config/hypr/poe.sh 4
-    F1 exec /home/$USER/.config/hypr/poe.sh 1
+    # PoE Scripts
+    F5 exec poe-hotkeys 5
+    F4 exec poe-hotkeys 4
+    F1 exec poe-hotkeys 1
 
     # Screenshots https://man.archlinux.org/man/grimshot.1.en
-    Print             exec grimshot copy screen
-    $mod+Print        exec grimshot copy area
-    $mod+Shift+Print  exec grimshot copy window
+    Print             exec screenshotter monitor
+    $mod+Print        exec screenshotter area
 
     # Lock screen and logout
     #bindsym $mod+l exec swaylock # Or your preferred Wayland locker (e.g., hyprlock if it's Wayland-generic and you have it)

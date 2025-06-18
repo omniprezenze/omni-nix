@@ -7,38 +7,53 @@ case "$1" in
     *) exit 1 ;;
 esac
 
-client_list=$(hyprctl clients)
+case "$XDG_CURRENT_DESKTOP" in
+  sway)
+    # --- Sway Logic ---
 
-current_address=""
-current_title=""
-current_workspace_id=""
+    class="steam_app.*"
+    instance="steam_app.*"
+    title="Path of Exile"
+    tree=$(swaymsg -t get_tree)
 
-found=0
+    con_id=$(echo "$tree" | jq --arg class "$class" --arg instance "$instance" --arg title "$title" '
+      .. | select(.window_properties? and 
+                  .window_properties.class? and 
+                  .window_properties.instance? and 
+                  .window_properties.title? and 
+                  (.window_properties.class | test($class)) and 
+                  (.window_properties.instance | test($instance)) and 
+                  .window_properties.title == $title) | .id
+    ')
 
-while IFS= read -r line; do
-    if [[ $line =~ ^Window\ (.+) ]]; then
-        current_address="${BASH_REMATCH[1]}"
-        current_title=""
-        current_workspace_id=""
-    elif [[ $line =~ ^[[:space:]]+title:\ (.+) ]]; then
-        current_title="${BASH_REMATCH[1]}"
-    elif [[ $line =~ ^[[:space:]]+workspace:\ (.+) ]]; then
-        current_workspace_id="${BASH_REMATCH[1]}"
+    if [ -z "$con_id" ]; then
+        exit 1
     fi
 
-    if [[ "$current_title" == "Path of Exile" || "$current_title" == "Path of Exile 2" ]]; then
-        workspace_id="$current_workspace_id"
-        client_address="$current_address"
-        found=1
-        break
-    fi
-done <<< "$client_list"
+    # Focus the window, then use wtype to send the keys.
+    # A small delay helps ensure the focus has shifted before typing begins.
+    swaymsg "[con_id=$con_id] focus"
+    sleep 0.1
+    echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool 
+    ;;
 
-if [ "$found" -ne 1 ] || [ -z "$workspace_id" ] || [ -z "$client_address" ]; then
+  Hyprland)
+    # --- Hyprland Logic ---
+    read -r workspace_id client_address < <(hyprctl -j clients | jq -r '.[] | select((.title == "Path of Exile" or .title == "Path of Exile 2") and (.initialClass | test("^steam_app_.*"))) | "\(.workspace.id) \(.address)"')
+
+    if [ -z "$workspace_id" ] || [ -z "$client_address" ]; then
+        exit 1
+    fi
+
+    hyprctl --batch "dispatch workspace $workspace_id; dispatch focuswindow address:$client_address"
+
+    sleep 0.1
+    echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool 
+    ;;
+
+  *)
     exit 1
-fi
+    ;;
+esac
 
-hyprctl dispatch workspace "$workspace_id"
-hyprctl dispatch focuswindow "$client_address"
-
-echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool
+exit 0

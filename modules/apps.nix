@@ -10,6 +10,8 @@
       wayvnc
       wireshark
 
+      path-of-building
+
       vesktop
       telegram-desktop
       spotify

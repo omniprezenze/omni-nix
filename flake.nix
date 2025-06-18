@@ -28,6 +28,7 @@
         modules = [
           ./hosts/omnipc
           ./modules/services/default.nix
+          ./modules/bin-scripts/default.nix
           #./overlays
         ];
       };

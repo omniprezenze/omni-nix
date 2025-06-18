@@ -52,7 +52,10 @@
         fuzzel
         swaynotificationcenter # notification center for sway
         wttrbar # weather information display
-        hyprshot # screenshots
+        grim
+        slurp
+        libnotify
+
         hyprpolkitagent
         hyprland-qtutils
         #sway-audio-idle-inhibit
