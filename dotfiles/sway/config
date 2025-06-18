@@ -11,3 +11,5 @@ gaps {
     inner 0
     outer 0
 }
+
+ client.focused #ffffff #ffffff #ffffff #ffffff #f5a97f 
