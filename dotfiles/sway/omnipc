@@ -1,0 +1,20 @@
+set {
+    $disp1 "DP-1"
+    $disp2 "DP-2"
+}
+
+output {
+    $disp1 mode 2560x1440@180Hz adaptive_sync on pos 1920 0
+    $disp2 mode 1920x1080@120Hz pos 0 0
+    * allow_tearing yes
+    * max_render_time off
+}
+
+workspace {
+    1 output $disp1 
+    2 output $disp1 
+    3 output $disp1 
+    4 output $disp2 
+    5 output $disp2 
+    6 output $disp2
+}

@@ -1,0 +1,42 @@
+set {
+	$ii inhibit_idle fullscreen
+	$game inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable
+    $floater floating enable
+    $floater_menu floating enable, resize set width 1030 height 710
+    $floater_tui floating enable, resize set width 1500 height 940
+    $tile floating disable
+}
+
+for_window {
+    [app_id="firefox"]      $ii
+    [app_id="mpv"]          $ii
+
+    [window_role="pop-up"] $floater
+    [window_role="bubble"] $floater
+    [window_role="dialog"] $floater
+    [window_type="dialog"] $floater
+
+    [app_id="io.github.kaii_lb.Overskride"]         $floater
+    [app_id="org.pulseaudio.pavucontrol"]           $floater
+    [title="(?:Open|Save) (?:File|Folder|As)"]      $floater
+    [title="Unlock Database - KeePassXC"]           $floater
+    [title="MangoJuice"]                            $floater
+    [title="Friends List" class="steam"]            $floater
+
+    [class="steam_app.*"]       $game
+	[instance="steam_app.*"]    $game
+    [class="starrail.exe"]      $game
+	[instance="origin.exe"]     $game
+	[instance="gamescope"]      $game
+	[class="gamescope"]         $game
+
+    [title="Battle.net"]                                        $tile
+    [title="^(Path of Building.*)$"]                            $tile
+    [title="^(Unnamed build (Scion) - Path of Building)$"]      $tile
+
+    [title="^(.*-tui)$"]                $floater_tui
+    [title="^(Honkai: Star Rail)$"]     $floater_tui
+
+    [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
+    [title="wlogout"] fullscreen
+}

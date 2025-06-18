@@ -29,7 +29,7 @@
           ./hosts/omnipc
           ./modules/services/default.nix
           ./modules/bin-scripts/default.nix
-          #./modules/aagl.nix
+          ./modules/aagl.nix
           #./overlays
         ];
       };

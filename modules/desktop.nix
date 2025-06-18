@@ -56,6 +56,8 @@
         slurp
         libnotify
 
+        xorg.xrandr
+
         hyprpolkitagent
         hyprland-qtutils
         #sway-audio-idle-inhibit
@@ -115,8 +117,8 @@
             "${pkgs.greetd.tuigreet}/bin/tuigreet"
             "--time"
             "--remember"
+            "--remember-user-session"
             "--asterisks"
-            "--user-menu"
           ];
         };
       };
