@@ -14,26 +14,26 @@ let
           sway)
             monitor=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
             take_screenshot -o "$monitor"
-            ;;
+          ;;
           Hyprland)
             monitor=$(hyprctl activeworkspace -j | jq -r '.monitor')
             take_screenshot -o "$monitor"
-            ;;
+          ;;
           *)
             notify-send "Error" "Unsupported desktop for screenshotter"
             exit 1 
-            ;;
+          ;;
         esac
         ;;
 
       area)
         take_screenshot -g "$(slurp -w 0)"
-        ;;
+      ;;
 
       *) 
         notify-send "Error" "$0 {monitor|area}"
         exit 1 
-        ;;
+      ;;
     esac
     
     exit 0

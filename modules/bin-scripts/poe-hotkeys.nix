@@ -2,6 +2,8 @@
 
 let
   poe-hotkeys = pkgs.writeShellScriptBin "poe-hotkeys" ''
+    set -eu
+
     case "$1" in
       1) c_str="/exit" ;;
       4) c_str="/kingsmarch" ;;
@@ -11,8 +13,6 @@ let
 
     case "$XDG_CURRENT_DESKTOP" in
     sway)
-      # --- Sway Logic ---
-
       class="steam_app.*"
       instance="steam_app.*"
       title="Path of Exile"
@@ -37,10 +37,9 @@ let
       swaymsg "[con_id=$con_id] focus"
       sleep 0.1
       echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool 
-      ;;
+    ;;
 
     Hyprland)
-      # --- Hyprland Logic ---
       read -r workspace_id client_address < <(hyprctl -j clients | jq -r '.[] | select((.title == "Path of Exile" or .title == "Path of Exile 2") and (.initialClass | test("^steam_app_.*"))) | "\(.workspace.id) \(.address)"')
 
       if [ -z "$workspace_id" ] || [ -z "$client_address" ]; then
@@ -51,11 +50,11 @@ let
 
       sleep 0.1
       echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool 
-      ;;
+    ;;
 
     *)
       exit 1
-      ;;
+    ;;
     esac
 
     exit 0

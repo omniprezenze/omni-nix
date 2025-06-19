@@ -85,8 +85,7 @@ bindsym --to-code {
     $mod+s scratchpad show
 
     # Special keys (combine with fn) to adjust volume via PulseAudio
-    XF86AudioMute exec wpctl set-volume -p $(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .pid') 0%
-    Shift+XF86AudioMute exec wpctl set-volume -p $(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .pid') 100%
+    XF86AudioMute exec mute_focus
     XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
     XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
 }
