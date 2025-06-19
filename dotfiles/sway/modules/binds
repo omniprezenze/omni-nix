@@ -21,7 +21,6 @@ bindsym --to-code {
     # Apps
     $mod+space exec $menu
     $mod+u fullscreen
-    $mod+Shift+u exec /home/$USER/.config/hypr/monitor_lock.sh
     $mod+Shift+m exec wayvncctl output-cycle
 
     $mod+p       exec swaymsg [app_id=$pass_id]   scratchpad show || exec $pass,   $maximize
@@ -36,7 +35,7 @@ bindsym --to-code {
     $mod+Print        exec screenshotter area
 
     # Lock screen and logout
-    #bindsym $mod+l exec swaylock # Or your preferred Wayland locker (e.g., hyprlock if it's Wayland-generic and you have it)
+    $mod+Shift+l exec swaylock
     $mod+BackSpace exec wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275
 
     # Reload the configuration file

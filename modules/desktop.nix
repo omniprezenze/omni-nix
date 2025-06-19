@@ -24,19 +24,15 @@
         xdg-utils
         selectdefaultapplication
 
-        # terminal emulator
         ghostty
         
-        sassc
-
+        sassc # no one remembers why I needed this
         psmisc
+
         wl-clipboard
         wl-clip-persist
         xdg-utils
 
-        # command control/automation
-        # wtype
-        # wlrctl
         dotool
 
         playerctl
@@ -47,25 +43,29 @@
 
         hyprpicker
         hyprpaper
+        hyprpolkitagent
+        hyprland-qtutils
+
+        swaynotificationcenter
+        swayidle
+        swaylock-effects
+        sway-audio-idle-inhibit
+
         wlogout
         waybar
         fuzzel
-        swaynotificationcenter # notification center for sway
-        wttrbar # weather information display
+        wttrbar
+
         grim
         slurp
         libnotify
 
         xorg.xrandr
 
-        hyprpolkitagent
-        hyprland-qtutils
-        #sway-audio-idle-inhibit
-
         pacvim
         brave
         
-        calcure #calendar
+        calcure
         
         cava
         
@@ -124,7 +124,7 @@
       };
     };
 
-    security.pam.services.hyprlock = {};
+    security.pam.services.swaylock.text = "auth include login";
 
     programs = { 
       firefox.enable = true;
@@ -139,9 +139,9 @@
       thunar = {
         enable = true;
         plugins = [
-            pkgs.xfce.thunar-archive-plugin
-            pkgs.xfce.tumbler
-            pkgs.xfce.thunar-volman
+          pkgs.xfce.thunar-archive-plugin
+          pkgs.xfce.tumbler
+          pkgs.xfce.thunar-volman
         ];
       };
       corectrl = {
@@ -173,10 +173,6 @@
             binPath = "/run/current-system/sw/bin/sway";
           };
         };
-      };
-      hyprlock = {
-        enable = true;
-        package = pkgs.hyprlock;
       };
     };
 
