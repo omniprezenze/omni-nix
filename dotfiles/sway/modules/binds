@@ -12,13 +12,15 @@ hide_edge_borders --i3 smart
 focus_on_window_activation smart
 force_display_urgency_hint 100
 
+# --to-code - keysyms will be translated into the corresponding keycodes in the first configured layout
 bindsym --to-code {
-    $mod+q exec $terminal
     $mod+F4 kill
-    $mod+e exec $fileManager
-    $mod+v floating toggle
+    $mod+Shift+f floating toggle
 
     # Apps
+    $mod+q exec $terminal
+    $mod+e exec $fileManager
+
     $mod+space exec $menu
     $mod+u fullscreen
     $mod+Shift+m exec wayvncctl output-cycle
