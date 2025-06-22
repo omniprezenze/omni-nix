@@ -21,6 +21,7 @@ for_window {
     [title="Unlock Database - KeePassXC"]                                   $floater
     [title="MangoJuice"]                                                    $floater
     [title="^(?!Steam$)" class="steam"]                                     $floater
+    [title="Pick game to add"]                                              $floater
 
     [title="^(?!qBittorrent v5.1.0$)" app_id="org.qbittorrent.qBittorrent"] $floater_menu
 
@@ -40,4 +41,7 @@ for_window {
     [title="Friends List" class="steam"]                                    $tile
     
     [title="wlogout"]                                                       fullscreen
+
+    [title="The Alters.*"]                                                       fullscreen disable
+
 }
