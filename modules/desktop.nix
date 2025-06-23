@@ -19,7 +19,6 @@
 
         everforest-gtk-theme
 
-        #iwgtk # wifi management
         winbox # routeros client
         xdg-utils
         selectdefaultapplication
@@ -41,7 +40,6 @@
         bibata-cursors
         kdePackages.qt6ct
 
-        hyprpicker
         hyprpaper
         hyprpolkitagent
         hyprland-qtutils

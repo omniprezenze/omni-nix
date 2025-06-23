@@ -48,8 +48,6 @@
       lsof
       pwgen
       nil
-      nomacs # basic image editor
-      ripgrep # command-line search tool that recursively searches directories for regex patterns
       unrar
       unzip
       p7zip
