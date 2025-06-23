@@ -26,7 +26,6 @@
       ryujinx-greemdev
       wowup-cf
       #rpcs3
-      xenia-canary
 
       protonplus
       winetricks
