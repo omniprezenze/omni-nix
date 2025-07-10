@@ -23,7 +23,13 @@
         xdg-utils
         selectdefaultapplication
 
-        ghostty
+        (ghostty.overrideAttrs (_: {
+	  preBuild = ''
+	    shopt -s globstar
+	    sed -i 's/^const xev = @import("xev");$/const xev = @import("xev").Epoll;/' **/*.zig
+	    shopt -u globstar
+	  '';
+	}))
         
         sassc # no one remembers why I needed this
         psmisc
@@ -147,9 +153,7 @@
       };
       hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         xwayland.enable = true;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       };
       sway = {
         enable = true;

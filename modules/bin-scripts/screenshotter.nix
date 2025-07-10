@@ -5,7 +5,6 @@ let
 
       take_screenshot() {
         grim "$@" - | wl-copy
-        notify-send "Screenshotted" "Saved to clipboard"
       } 
 
     case "$1" in

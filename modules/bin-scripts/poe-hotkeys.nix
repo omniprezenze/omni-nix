@@ -32,8 +32,6 @@ let
         exit 1
       fi
 
-      # Focus the window, then use wtype to send the keys.
-      # A small delay helps ensure the focus has shifted before typing begins.
       swaymsg "[con_id=$con_id] focus"
       sleep 0.1
       echo -e "keydelay 0\nkeyhold 0\ntypedelay 0\ntypehold 0\nkey enter\ntype $c_str\nkey enter" | dotool 
