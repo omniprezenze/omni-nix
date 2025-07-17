@@ -5,6 +5,7 @@
       systemd.enable = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "ntsync" ];
     consoleLogLevel = 3;
     loader = {
       efi.canTouchEfiVariables = true;
@@ -13,6 +14,14 @@
 
     tmp.cleanOnBoot = true;
   };
+
+  services.udev.extraRules = ''
+    # Allow all users to access ntsync.
+    KERNEL=="ntsync", MODE="0644"
+
+    # Set the "uaccess" tag for raw HID access for VKB Devices in wine
+    KERNEL=="hidraw*", ATTRS{idVendor}=="231d", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
+  '';
 
   # Show asterisks when typing sudo password
   security.sudo.extraConfig = "Defaults env_reset,pwfeedback";

@@ -95,6 +95,8 @@
         HYPRCURSOR_THEME = "Bibata-Modern-Ice";
         TERMINAL = "ghostty";
         QT_QPA_PLATFORMTHEME = "qt6ct";
+
+        WAYLANDDRV_PRIMARY_MONITOR = "DP-1";
       };
       shellAliases = {
         restart-sound   = "systemctl --user restart pipewire{,-pulse} wireplumber";

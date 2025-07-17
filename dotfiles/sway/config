@@ -1,6 +1,9 @@
 include {
 	"~/.config/sway/$(cat /etc/hostname)"
-	~/.config/sway/modules/*
+	~/.config/sway/modules/binds
+	~/.config/sway/modules/execs
+	~/.config/sway/modules/inputs
+	~/.config/sway/modules/win-rules
 	/etc/sway/config.d/*
 }
 
@@ -12,4 +15,4 @@ gaps {
     outer 0
 }
 
- client.focused #ffffff #ffffff #ffffff #ffffff #f5a97f 
+ client.focused #ffffff #ffffff #ffffff #ffffff #f5a97f
