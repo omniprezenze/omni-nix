@@ -42,6 +42,4 @@ for_window {
     
     [title="wlogout"]                                                       fullscreen
 
-    [title="The Alters.*"]                                                       fullscreen disable
-
 }

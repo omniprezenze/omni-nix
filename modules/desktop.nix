@@ -51,6 +51,7 @@
         hyprland-qtutils
 
         swaynotificationcenter
+
         swayidle
         swaylock-effects
         sway-audio-idle-inhibit
