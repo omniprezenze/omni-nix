@@ -121,7 +121,7 @@
         settings.default_session = {
           user = "greeter";
           command = lib.strings.concatStringsSep " " [
-            "${pkgs.greetd.tuigreet}/bin/tuigreet"
+            "${pkgs.tuigreet}/bin/tuigreet"
             "--time"
             "--remember"
             "--remember-user-session"
