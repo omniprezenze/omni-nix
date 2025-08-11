@@ -22,7 +22,7 @@
       #hiddify-app
 
       pcsx2
-      duckstation
+      gearlever
       ryujinx-greemdev
       wowup-cf
       #rpcs3
