@@ -19,7 +19,6 @@
       obsidian
       qalculate-gtk
       shotcut
-      #hiddify-app
 
       pcsx2
       gearlever
