@@ -9,11 +9,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
-    lowLatency = { 
-      enable = true;
-      rate = 48000;
-      quantum = 1024;
-    };
+#    lowLatency = { 
+#      enable = true;
+#      rate = 48000;
+#      quantum = 1024;
+#    };
   };
   environment.systemPackages = with pkgs; [
     pavucontrol
