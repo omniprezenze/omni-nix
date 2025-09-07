@@ -1,5 +1,5 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "height": 41,
     "spacing": 4,
     "modules-left": ["custom/power", "cpu", "memory", "temperature", "network", "custom/bt", "systemd-failed-units", "hyprland/workspaces", "sway/workspaces"],
