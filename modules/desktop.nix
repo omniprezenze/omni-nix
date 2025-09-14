@@ -53,6 +53,7 @@
         swaynotificationcenter
 
         swayidle
+        hypridle
         swaylock-effects
         sway-audio-idle-inhibit
 

@@ -9,11 +9,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1755609725,
-        "narHash": "sha256-r0Y5VDxpiA1AJy02VkmeCNudZ8/JJR1OP3ldtfce0ls=",
+        "lastModified": 1757519352,
+        "narHash": "sha256-Rfokm02H340r+uuxswri8IiC64S30vziLGR36/NDId4=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "7566a0bcc55dbfaeb28791c06aa02060cf5bd0bf",
+        "rev": "dc83e172461fb4f2e55b4a61762d898c73026a85",
         "type": "github"
       },
       "original": {
@@ -62,11 +62,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1757210397,
-        "narHash": "sha256-pGAd0KLt6FMu7x742zs4OVYkoUx2o6vJGvYUVZJpNG4=",
+        "lastModified": 1757641478,
+        "narHash": "sha256-PZp0uvF6++tVln91cX8t0ZALMZHHoX++eeG7ysKgt1c=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "e479c636519292b50de48f73d7df6cf14c745a1c",
+        "rev": "5cba556b6c1a6fa4ea9c28d2e4cf946eff45ac07",
         "type": "github"
       },
       "original": {
@@ -140,11 +140,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1757068644,
-        "narHash": "sha256-NOrUtIhTkIIumj1E/Rsv1J37Yi3xGStISEo8tZm3KW4=",
+        "lastModified": 1757487488,
+        "narHash": "sha256-zwE/e7CuPJUWKdvvTCB7iunV4E/+G0lKfv4kk/5Izdg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8eb28adfa3dc4de28e792e3bf49fcf9007ca8ac9",
+        "rev": "ab0f3607a6c7486ea22229b92ed2d355f1482ee0",
         "type": "github"
       },
       "original": {
