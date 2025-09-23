@@ -20,6 +20,8 @@
       qalculate-gtk
       shotcut
 
+      lshw-gui
+
       pcsx2
       gearlever
       ryujinx-greemdev
