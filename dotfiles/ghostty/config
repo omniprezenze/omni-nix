@@ -25,7 +25,7 @@ clipboard-write = allow
 
 # theme
 window-theme = dark
-theme = Everforest Dark   Hard 
+theme = Everforest Dark Hard 
 
 custom-shader = shaders/cursor_smear.glsl
 #custom-shader= shader/cursor_smear_fade.glsl
