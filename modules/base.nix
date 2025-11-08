@@ -42,6 +42,9 @@
       ];
     };
     wireless.iwd.enable = true;
+    hosts = {
+      "172.232.156.53" = ["omni.linode.icu"];
+    };
   };
 
   nixpkgs = {

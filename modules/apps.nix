@@ -10,7 +10,7 @@
       wayvnc
       wireshark
 
-      path-of-building
+      rusty-path-of-building
 
       vesktop
       telegram-desktop
@@ -24,7 +24,7 @@
 
       pcsx2
       gearlever
-      ryujinx-greemdev
+      ryubing
       wowup-cf
       #rpcs3
 
