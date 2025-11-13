@@ -39,7 +39,7 @@
       })
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
       # activate and use the Python virtual environment as usual and install dependencies
-      (python313.withPackages (ps:
+      (python314.withPackages (ps:
         with ps; [
           flask
           pandas
