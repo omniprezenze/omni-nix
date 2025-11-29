@@ -38,6 +38,8 @@
         wl-clip-persist
         xdg-utils
 
+        file-roller
+
         dotool
 
         playerctl
@@ -141,7 +143,6 @@
         binfmt = true;
       };
       direnv.enable = true;
-      file-roller.enable = true;
       dconf.enable = true;
       xfconf.enable = true;
       thunar = {

@@ -28,6 +28,8 @@
       wowup-cf
       #rpcs3
 
+      goverlay
+
       protonplus
       winetricks
       bottles
