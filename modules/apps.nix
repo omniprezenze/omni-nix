@@ -11,6 +11,8 @@
       wireshark
 
       rusty-path-of-building
+      nexusmods-app
+      limo
 
       vesktop
       telegram-desktop
