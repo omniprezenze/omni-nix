@@ -22,14 +22,8 @@
         winbox # routeros client
         xdg-utils
         selectdefaultapplication
-
-        (ghostty.overrideAttrs (_: {
-	  preBuild = ''
-	    shopt -s globstar
-	    sed -i 's/^const xev = @import("xev");$/const xev = @import("xev").Epoll;/' **/*.zig
-	    shopt -u globstar
-	  '';
-	}))
+        
+        ghostty
         
         sassc # no one remembers why I needed this
         psmisc
@@ -84,6 +78,8 @@
         imv # image viewer
         pinta # paint
         gnome-text-editor # notepad
+        
+        ashell
       ];
       sessionVariables = {
         NIXOS_OZONE_WL = "1"; # for electron and chromium apps to run on wayland

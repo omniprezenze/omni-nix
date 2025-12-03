@@ -11,8 +11,6 @@
       wireshark
 
       rusty-path-of-building
-      nexusmods-app
-      limo
 
       vesktop
       telegram-desktop
@@ -34,7 +32,7 @@
 
       protonplus
       winetricks
-      bottles
+      (bottles.override { removeWarningPopup = true; })
       (lutris.override {
         extraPkgs = pkgs: [
           umu-launcher
