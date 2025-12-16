@@ -12,6 +12,8 @@
 
       rusty-path-of-building
 
+      antigravity
+
       vesktop
       telegram-desktop
       spotify
