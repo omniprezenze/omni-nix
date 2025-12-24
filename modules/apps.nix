@@ -34,6 +34,7 @@
 
       protonplus
       winetricks
+      wineWowPackages.stagingFull
       (bottles.override { removeWarningPopup = true; })
       (lutris.override {
         extraPkgs = pkgs: [

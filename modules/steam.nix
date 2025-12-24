@@ -15,7 +15,6 @@
 
   environment.systemPackages = with pkgs; [
     mangohud
-    mangojuice
     evtest
   ];
 

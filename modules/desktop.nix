@@ -48,10 +48,7 @@
 
         swaynotificationcenter
 
-        swayidle
         hypridle
-        swaylock-effects
-        sway-audio-idle-inhibit
 
         wlogout
         waybar
@@ -156,12 +153,6 @@
         enable = true;
         xwayland.enable = true;
       };
-      sway = {
-        enable = true;
-        wrapperFeatures.gtk = true;
-        xwayland.enable = true;
-        #package = pkgs.swayfx; 
-      };
       uwsm = {
         enable = true;
         waylandCompositors = {
@@ -169,11 +160,6 @@
             prettyName = "Hyprland";
             comment = "Hyprland compositor managed by UWSM";
             binPath = "${hyprlandUWSMWrapper}/bin/Hyprland";
-          };
-          sway = {
-            prettyName = "Sway";
-            comment = "Sway compositor managed by UWSM";
-            binPath = "/run/current-system/sw/bin/sway";
           };
         };
       };
