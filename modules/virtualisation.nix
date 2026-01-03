@@ -16,5 +16,9 @@
   };
   programs.virt-manager.enable = true;
   users.users.omni.extraGroups = [ "podman" "libvirtd" ];
+  
+  environment.systemPackages = with pkgs; [
+    virtiofsd
+  ];
 
 }
