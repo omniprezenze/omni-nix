@@ -26,7 +26,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/omnipc
-          ./modules/services/default.nix
+          ./modules/systemd/default.nix
           ./modules/bin-scripts/default.nix
           ./modules/aagl.nix
           ./modules/overlays.nix

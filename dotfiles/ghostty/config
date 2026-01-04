@@ -1,8 +1,30 @@
+# Font Configuration
 font-family = "FiraCode Nerd Font"
 font-size = 18
+
+# Window Configuration
+window-decoration = false
+window-padding-x = 12
+window-padding-y = 12
+background-opacity = 1.0
+background-blur-radius = 32
+
+# Cursor Configuration
+cursor-style = block
+cursor-style-blink = true
 adjust-cursor-thickness = 4
 
-# binds https://gist.github.com/hensg/43bc71c21d1f79385892352a390aa2ca
+# Scrollback
+scrollback-limit = 3023
+
+# Terminal features
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
+
+# Disable annoying copied to clipboard
+app-notifications = no-clipboard-copy,no-config-reload
+
 keybind = shift+ctrl+r=reload_config
 keybind = alt+d=new_split:right
 keybind = alt+shift+d=new_split:down
@@ -23,10 +45,22 @@ keybind = ctrl+enter=ignore
 clipboard-read = allow
 clipboard-write = allow
 
-# theme
-window-theme = dark
-theme = Everforest Dark Hard 
+# Material 3 UI elements
+unfocused-split-opacity = 0.7
+unfocused-split-fill = #44464f
+
+# Tab configuration
+gtk-titlebar = false
+
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor
+keybind = shift+enter=text:\n
+
+# Rando stuff
+gtk-single-instance = true
+
+# Dank color generation
+config-file = ./config-dankcolors
 
 custom-shader = shaders/cursor_smear.glsl
-#custom-shader= shader/cursor_smear_fade.glsl
-#custom-shader= shader/cursor_blaze_no_trail.glsl 

@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./hyprpaper.nix
-    ./waybar.nix
     ./hyprpolkitagent.nix
+    ./hyprland-session-target.nix
   ];
 }

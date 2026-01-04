@@ -1,14 +1,4 @@
 {  inputs, pkgs, lib, config, ... }:
-  let
-    hyprlandUWSMWrapper = pkgs.writeShellScriptBin "Hyprland" ''
-      set -eu
-
-      HYPRLAND_BINARY="/run/current-system/sw/bin/hyprland"
-      HYPRLAND_CONFIG="$HOME/.config/hypr/hyprland_${config.networking.hostName}.conf"
-
-      exec "$HYPRLAND_BINARY" -c "$HYPRLAND_CONFIG"
-    '';
-  in
   {
     environment = {
       systemPackages = with pkgs; [
@@ -25,7 +15,6 @@
         
         ghostty
         
-        sassc # no one remembers why I needed this
         psmisc
 
         wl-clipboard
@@ -42,18 +31,9 @@
         bibata-cursors
         kdePackages.qt6ct
 
-        hyprpaper
         hyprpolkitagent
-        hyprland-qtutils
 
-        swaynotificationcenter
-
-        hypridle
-
-        wlogout
-        waybar
         fuzzel
-        wttrbar
 
         grim
         slurp
@@ -64,10 +44,8 @@
         pacvim
         brave
         
-        calcure
-        
-        cava
-        
+        #calcure
+                
         piper # frontend for ratbag (mouse settings)
         
         zathura # pdf reader
@@ -96,8 +74,6 @@
         WAYLANDDRV_PRIMARY_MONITOR = "DP-1";
       };
       shellAliases = {
-        restart-sound   = "systemctl --user restart pipewire{,-pulse} wireplumber";
-        de-logout = "loginctl terminate-user \"\"";
         hdrmpv = "ENABLE_HDR_WSI=1 mpv --vo=gpu-next --target-colorspace-hint --gpu-api=vulkan --gpu-context=waylandvk";
       };
     };
@@ -112,6 +88,7 @@
       gvfs.enable = true; # Mount, trash, and other functionalities
       tumbler.enable = true; # thunar Thumbnail support for images
       ratbagd.enable = true;
+      hypridle.enable = true;
       greetd = {
         enable = true;
         settings.default_session = {
@@ -120,14 +97,12 @@
             "${pkgs.tuigreet}/bin/tuigreet"
             "--time"
             "--remember"
-            "--remember-user-session"
             "--asterisks"
+            "--cmd 'start-hyprland-custom'"
           ];
         };
       };
     };
-
-    security.pam.services.swaylock.text = "auth include login";
 
     programs = { 
       firefox.enable = true;
@@ -141,9 +116,9 @@
       thunar = {
         enable = true;
         plugins = [
-          pkgs.xfce.thunar-archive-plugin
-          pkgs.xfce.tumbler
-          pkgs.xfce.thunar-volman
+          pkgs.thunar-archive-plugin
+          pkgs.tumbler
+          pkgs.thunar-volman
         ];
       };
       corectrl = {
@@ -153,14 +128,13 @@
         enable = true;
         xwayland.enable = true;
       };
-      uwsm = {
+
+      dms-shell = {
         enable = true;
-        waylandCompositors = {
-          hyprland = {
-            prettyName = "Hyprland";
-            comment = "Hyprland compositor managed by UWSM";
-            binPath = "${hyprlandUWSMWrapper}/bin/Hyprland";
-          };
+
+        systemd = {
+          enable = true;
+          restartIfChanged = true;
         };
       };
     };

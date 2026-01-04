@@ -29,6 +29,7 @@
       ryubing
       wowup-cf
       #rpcs3
+      xenia-canary
 
       goverlay
 

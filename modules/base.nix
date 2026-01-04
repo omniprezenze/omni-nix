@@ -41,7 +41,7 @@
         5900 # vnc
       ];
     };
-    wireless.iwd.enable = true;
+    wireless.enable = true;
     hosts = {
       "172.232.156.53" = ["omni.linode.icu"];
     };
