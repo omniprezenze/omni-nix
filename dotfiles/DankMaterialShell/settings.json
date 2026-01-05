@@ -1,6 +1,6 @@
 {
-  "currentThemeName": "dynamic",
-  "customThemeFile": "",
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/omni/git/omni-nix/dotfiles/DankMaterialShell/custom-theme.json",
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
@@ -163,9 +163,7 @@
   "launchPrefix": "",
   "brightnessDevicePins": {},
   "wifiNetworkPins": {},
-  "bluetoothDevicePins": {
-    "preferredDevice": "88:92:CC:53:76:76"
-  },
+  "bluetoothDevicePins": {},
   "audioInputDevicePins": {},
   "audioOutputDevicePins": {
     "preferredOutput": "bluez_output.88_92_CC_53_76_76.1"

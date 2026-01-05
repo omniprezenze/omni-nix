@@ -32,6 +32,7 @@
         kdePackages.qt6ct
 
         hyprpolkitagent
+        wlogout
 
         fuzzel
 
@@ -131,6 +132,7 @@
 
       dms-shell = {
         enable = true;
+        enableDynamicTheming = false;
 
         systemd = {
           enable = true;
