@@ -257,11 +257,11 @@
         "clipboard",
         "cpuUsage",
         "memUsage",
-        "notificationButton",
         "battery",
         "controlCenterButton",
         "weather",
-        "clock"
+        "clock",
+        "notificationButton"
       ],
       "spacing": 4,
       "innerPadding": 4,
