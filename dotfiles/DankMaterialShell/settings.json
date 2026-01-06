@@ -108,7 +108,7 @@
   "runningAppsCurrentWorkspace": false,
   "runningAppsGroupByApp": false,
   "centeringMode": "index",
-  "clockDateFormat": "",
+  "clockDateFormat": "ddd MMM d",
   "lockDateFormat": "",
   "mediaSize": 1,
   "appLauncherViewMode": "list",
@@ -131,8 +131,8 @@
   "launcherLogoBrightness": 0.5,
   "launcherLogoContrast": 1,
   "launcherLogoSizeOffset": 4,
-  "fontFamily": "Noto Sans",
-  "monoFontFamily": "Fira Code",
+  "fontFamily": "FiraCode Nerd Font",
+  "monoFontFamily": "FiraCode Nerd Font Mono",
   "fontWeight": 400,
   "fontScale": 1.2,
   "notepadUseMonospace": true,
@@ -229,7 +229,11 @@
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
-  "screenPreferences": {},
+  "screenPreferences": {
+    "notepad": [
+      "all"
+    ]
+  },
   "showOnLastDisplay": {},
   "barConfigs": [
     {
