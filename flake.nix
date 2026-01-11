@@ -29,7 +29,7 @@
           ./modules/systemd/default.nix
           ./modules/bin-scripts/default.nix
           ./modules/aagl.nix
-          ./overlays/overlays.nix
+          #./overlays/overlays.nix
         ];
       };
     };
