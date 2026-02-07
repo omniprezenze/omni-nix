@@ -21,6 +21,7 @@
       obsidian
       qalculate-gtk
       shotcut
+      caligula
 
       lshw-gui
 
