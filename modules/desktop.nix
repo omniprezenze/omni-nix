@@ -40,7 +40,7 @@
         slurp
         libnotify
 
-        xorg.xrandr
+        xrandr
 
         pacvim
         brave

@@ -30,18 +30,17 @@
       ryubing
       wowup-cf
       #rpcs3
-      xenia-canary
+      #xenia-canary
 
       goverlay
 
       protonplus
       winetricks
-      wineWowPackages.stagingFull
+      wineWow64Packages.wayland
       (bottles.override { removeWarningPopup = true; })
       (lutris.override {
         extraPkgs = pkgs: [
           umu-launcher
-          wineWowPackages.waylandFull
         ];
       })
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
