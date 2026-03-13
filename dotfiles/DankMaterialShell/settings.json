@@ -11,7 +11,7 @@
   "popupTransparency": 1,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sch",
-  "widgetColorMode": "default",
+  "widgetColorMode": "colorful",
   "controlCenterTileColorMode": "primary",
   "buttonColorMode": "primary",
   "cornerRadius": 12,
@@ -200,7 +200,9 @@
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
   "spotlightSectionViewModes": {},
-  "appDrawerSectionViewModes": {},
+  "appDrawerSectionViewModes": {
+    "apps": "list"
+  },
   "niriOverviewOverlayEnabled": true,
   "dankLauncherV2Size": "compact",
   "dankLauncherV2BorderEnabled": false,
@@ -458,7 +460,7 @@
       "transparency": 1,
       "widgetTransparency": 1,
       "squareCorners": false,
-      "noBackground": false,
+      "noBackground": true,
       "gothCornersEnabled": false,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 12,
@@ -477,7 +479,11 @@
       "visible": true,
       "popupGapsAuto": true,
       "popupGapsManual": 4,
-      "maximizeDetection": true
+      "maximizeDetection": true,
+      "shadowIntensity": 0,
+      "maximizeWidgetIcons": true,
+      "maximizeWidgetText": false,
+      "removeWidgetPadding": false
     }
   ],
   "desktopClockEnabled": false,
@@ -551,7 +557,11 @@
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
   "desktopWidgetGroups": [],
-  "builtInPluginSettings": {},
+  "builtInPluginSettings": {
+    "dms_settings_search": {
+      "trigger": "?"
+    }
+  },
   "clipboardEnterToPaste": false,
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
