@@ -36,8 +36,6 @@
     firewall = {
       enable = true;
       allowedTCPPorts = [
-        9443 # webui panel
-        11434 # ollama
         5900 # vnc
       ];
     };
