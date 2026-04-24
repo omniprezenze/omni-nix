@@ -283,8 +283,16 @@
   "launchPrefix": "",
   "brightnessDevicePins": {},
   "wifiNetworkPins": {},
-  "bluetoothDevicePins": {},
-  "audioInputDevicePins": {},
+  "bluetoothDevicePins": {
+    "preferredDevice": [
+      "88:92:CC:53:76:76"
+    ]
+  },
+  "audioInputDevicePins": {
+    "preferredInput": [
+      "bluez_input.88:92:CC:53:76:76"
+    ]
+  },
   "audioOutputDevicePins": {
     "preferredOutput": "bluez_output.88_92_CC_53_76_76.1"
   },
