@@ -30,6 +30,7 @@
           ./modules/bin-scripts/default.nix
           ./modules/aagl.nix
           #./overlays/overlays.nix
+          ./overlays/ldap-fix.nix
         ];
       };
     };
