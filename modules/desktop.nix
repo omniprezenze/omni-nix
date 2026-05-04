@@ -43,7 +43,7 @@
         xrandr
 
         pacvim
-        brave
+        inputs.brave-origin.legacyPackages.${pkgs.system}.brave-origin-nightly
         
         #calcure
                 
