@@ -9,7 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
-    brave-origin.url = "github:Dreaming-Codes/nixpkgs/brave-channels";
   };
 
   outputs = { nixpkgs, ... }@inputs: {

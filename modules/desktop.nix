@@ -43,9 +43,6 @@
         xrandr
 
         pacvim
-        inputs.brave-origin.legacyPackages.${pkgs.system}.brave-origin-nightly
-        
-        #calcure
                 
         piper # frontend for ratbag (mouse settings)
         
