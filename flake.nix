@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
+    tuigreet.url = "github:NotAShelf/tuigreet"; # https://github.com/NotAShelf/tuigreet
   };
 
   outputs = { nixpkgs, ... }@inputs: {
@@ -18,6 +19,9 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/omnilaptop
+          { nixpkgs.overlays = [ (final: prev: {
+              tuigreet = inputs.tuigreet.packages.${prev.hostPlatform.system}.tuigreet;
+            }) ]; }
           #nixos-hardware.nixosModules.lenovo-legion-15ach6h
         ];
       };
@@ -30,7 +34,10 @@
           ./modules/bin-scripts/default.nix
           ./modules/aagl.nix
           #./overlays/overlays.nix
-          ./overlays/ldap-fix.nix
+          # ./overlays/ldap-fix.nix
+          { nixpkgs.overlays = [ (final: prev: {
+              tuigreet = inputs.tuigreet.packages.${prev.hostPlatform.system}.tuigreet;
+            }) ]; }
         ];
       };
     };

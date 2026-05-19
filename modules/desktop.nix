@@ -96,7 +96,8 @@
             "--time"
             "--remember"
             "--asterisks"
-            "--cmd 'start-hyprland-custom'"
+            "--cmd start-hyprland"
+#            "--cmd 'start-hyprland-custom'"
           ];
         };
       };

@@ -1,0 +1,7 @@
+[[outputs]]
+connector = "DP-1"
+primary = true
+
+[[outputs]]
+connector = "DP-2"
+enabled = false

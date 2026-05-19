@@ -5,6 +5,15 @@
       systemd.enable = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelPatches = [
+      {
+        name = "fix-mt7921e-bluetooth-wmt";
+        patch = pkgs.fetchpatch {
+          url = "https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git/patch/?id=162b1adeb057d28ad84fd8a03f3c50cf08db5c62";
+          hash = "sha256-DE6im1PmLWFYRk2QtfCWXfBzBCMT4fyUgufDhUn0wL8="; 
+        };
+      }
+    ];
     kernelModules = [ "ntsync" ];
     consoleLogLevel = 3;
     loader = {
