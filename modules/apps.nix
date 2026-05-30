@@ -38,17 +38,17 @@
       #(bottles.override { removeWarningPopup = true; })
       # for python: nix-shell -p python3 --command "python -m venv .venv --copies"
       # activate and use the Python virtual environment as usual and install dependencies
-      (python313.withPackages (ps:
-        with ps; [
-          flask
-          pandas
-          requests
-          pyquery
-          pyyaml
-          tenacity
-        ]
-      ))
-      pipx
+      # (python313.withPackages (ps:
+      #   with ps; [
+      #     flask
+      #     pandas
+      #     requests
+      #     pyquery
+      #     pyyaml
+      #     tenacity
+      #   ]
+      # ))
+      # pipx
 
       go
       gotools

@@ -120,11 +120,11 @@ hl.config({
 })
 
 -- ─── Render ───────────────────────────────────────────────────────────────────
-hl.config({
-    render = {
-        direct_scanout = true,
-    },
-})
+-- hl.config({
+--     render = {
+--         direct_scanout = true,
+--     },
+-- })
 
 -- ─── Keybinds ─────────────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + Q",           hl.dsp.exec_cmd(terminal))
