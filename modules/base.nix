@@ -30,6 +30,9 @@
 
     # Set the "uaccess" tag for raw HID access for VKB Devices in wine
     KERNEL=="hidraw*", ATTRS{idVendor}=="231d", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
+
+    # Allow VIA/Keychron Launcher to access Keychron Q3 HE 8K
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="1030", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
   # Show asterisks when typing sudo password

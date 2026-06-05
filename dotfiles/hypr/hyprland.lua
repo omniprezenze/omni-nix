@@ -26,7 +26,7 @@ if host == "omnipc" then
         mode          = "2560x1440@180",
         position      = "0x0",
         scale         = 1,
-        vrr           = 0,
+        vrr           = 1,
         bitdepth      = 10,
         sdrbrightness = 1.3,
         sdrsaturation = 1.3,

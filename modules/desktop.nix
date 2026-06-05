@@ -24,6 +24,9 @@
         file-roller
 
         dotool
+        google-chrome
+        busybox
+        dfu-util
 
         playerctl
 
