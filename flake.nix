@@ -8,6 +8,10 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-gaming.url = "github:fufexan/nix-gaming";
     tuigreet.url = "github:NotAShelf/tuigreet"; # https://github.com/NotAShelf/tuigreet
   };
@@ -33,11 +37,16 @@
           ./modules/systemd/default.nix
           ./modules/bin-scripts/default.nix
           ./modules/aagl.nix
-          #./overlays/overlays.nix
-          # ./overlays/ldap-fix.nix
-          { nixpkgs.overlays = [ (final: prev: {
-              tuigreet = inputs.tuigreet.packages.${prev.hostPlatform.system}.tuigreet;
-            }) ]; }
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                tuigreet = inputs.tuigreet.packages.${prev.stdenv.hostPlatform.system}.tuigreet;
+              })
+              (final: _prev: {
+                pnpm_10_29_2 = final.pnpm_10;
+              })
+            ];
+          }        
         ];
       };
     };

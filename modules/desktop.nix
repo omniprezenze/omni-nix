@@ -123,9 +123,6 @@
           pkgs.thunar-volman
         ];
       };
-      corectrl = {
-        enable = true;
-      };
       hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -133,8 +130,9 @@
 
       dms-shell = {
         enable = true;
-        enableDynamicTheming = false;
+        package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
+        enableDynamicTheming = false;
         systemd = {
           enable = true;
           restartIfChanged = true;

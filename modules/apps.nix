@@ -65,4 +65,6 @@
     };
   };
   #services.flatpak.enable = true;
+  #services.lact.enable = true;
+  programs.corectrl.enable = true;
 }

@@ -61,6 +61,9 @@ hl.config({
             vibrancy = 0.1696,
         },
     },
+    cursor = {
+        no_hardware_cursors = true
+    },
 })
 
 -- ─── Animations ───────────────────────────────────────────────────────────────
@@ -154,8 +157,8 @@ hl.bind(mainMod .. " + SHIFT + U",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.conf
 hl.bind(mainMod .. " + SHIFT + M",  hl.dsp.exec_cmd("wayvncctl output-cycle"))
 
 -- Screenshots / system
-hl.bind(mainMod .. " + Print",    hl.dsp.exec_cmd("screenshotter area"))
-hl.bind("Print",                   hl.dsp.exec_cmd("screenshotter monitor"))
+hl.bind(mainMod .. " + Print",    hl.dsp.exec_cmd("dms screenshot --no-file"))
+hl.bind("Print",                   hl.dsp.exec_cmd("dms screenshot full --no-file"))
 hl.bind(mainMod .. " + backspace", hl.dsp.exec_cmd("wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"))
 hl.bind(mainMod .. " + L",         hl.dsp.exec_cmd("dms ipc call lock lock"))
 
@@ -270,10 +273,10 @@ hl.window_rule({ name = "firefox-inhibit", idle_inhibit = "always", match = { cl
 
 -- Fullscreen rules
 -- Note: two rules shared the name "windowrule-41" in the original; renamed to avoid collision.
-hl.window_rule({ name = "fullscreen-WoW",          fullscreen = true, match = { title = "^(World of Warcraft)$" } })
-hl.window_rule({ name = "fullscreen-steam-elden",  fullscreen = true, match = { class = "steam_app_1422450" } })
-hl.window_rule({ name = "genshinimpact-fullscreen", fullscreen = true, match = { class = "genshinimpact.exe" } })
-hl.window_rule({ name = "Endfield-fullscreen",      fullscreen = true, match = { title = "Endfield" } })
+hl.window_rule({ name = "fullscreen-WoW",           fullscreen = true, match = { title = "^(World of Warcraft)$" } })
+hl.window_rule({ name = "fullscreen-steam-elden",   fullscreen = true, match = { class = "steam_app_1422450" } })
+hl.window_rule({ name = "fullscreen-genshinimpact", fullscreen = true, match = { initial_title = "Genshin Impact" } })
+hl.window_rule({ name = "fullscreen-Endfield",      fullscreen = true, match = { title = "Endfield" } })
 
 -- Generic fixes
 hl.window_rule({ name = "windowrule-maximize", suppress_event = "maximize", match = { class = ".*" } })
