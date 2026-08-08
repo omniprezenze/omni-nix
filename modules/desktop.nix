@@ -7,8 +7,6 @@
 
         vulkan-tools
 
-        everforest-gtk-theme
-
         winbox # routeros client
         xdg-utils
         selectdefaultapplication

@@ -59,3 +59,5 @@ else
         scale    = "auto",
     })
 end
+-- DMS Include Configs
+require("dms.layout")
