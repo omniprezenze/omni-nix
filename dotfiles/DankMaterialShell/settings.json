@@ -8,6 +8,7 @@
   "widgetColorMode": "colorful",
   "cornerRadius": 12,
   "firstDayOfWeek": 1,
+  "audioShowStreamDevices": true,
   "clockFormat": "24h",
   "barElevationEnabled": false,
   "showWorkspaceIndex": true,
