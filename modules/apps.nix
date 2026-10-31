@@ -23,7 +23,7 @@
       lshw-gui
 
       pcsx2
-      gearlever
+      #gearlever
       ryubing
       wowup-cf
       #rpcs3
