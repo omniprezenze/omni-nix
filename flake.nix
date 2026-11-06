@@ -15,13 +15,18 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
+    packages.x86_64-linux.rusty-path-of-building =
+      self.nixosConfigurations.omnipc.pkgs.rusty-path-of-building;
+
     nixosConfigurations = {
       omnilaptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/omnilaptop
+          ./modules/systemd/default.nix
+          ./modules/bin-scripts/default.nix
           #nixos-hardware.nixosModules.lenovo-legion-15ach6h
         ];
       };

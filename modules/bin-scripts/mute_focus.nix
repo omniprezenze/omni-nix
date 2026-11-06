@@ -2,7 +2,7 @@
 
 let
   mute_focus = pkgs.writeShellScriptBin "mute_focus" ''
-    set -eu
+    set -euo pipefail
 
     case "$XDG_CURRENT_DESKTOP" in
       sway)
@@ -15,9 +15,18 @@ let
           hyprctl activewindow -j | jq -r '.pid'
         }
       ;;
+      *)
+        exit 1
+      ;;
     esac
 
-    pactl list sink-inputs | grep -B20 $(get_focus_pid) | grep "Sink Input" | cut -d '#' -f 2 | while read -r item; do
+    pid=$(get_focus_pid)
+    case "$pid" in
+      ""|null|*[!0-9]*) exit 0 ;;
+    esac
+
+    pactl -f json list sink-inputs | jq -r --arg pid "$pid" \
+      '.[] | select((.properties["application.process.id"] // "" | tostring) == $pid) | .index' | while read -r item; do
       pactl set-sink-input-mute "$item" toggle
     done
 

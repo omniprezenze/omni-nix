@@ -45,8 +45,8 @@ elif [ "$1" == "status" ]; then
 	exit
 elif [ "$1" == "help" ] || [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ]; then
 	echo Usage:
-	echo -e "\thyprlock status"
-	echo -e "\thyprlock [monitor_id]"
+	echo -e "\tmonitor_lock.sh status"
+	echo -e "\tmonitor_lock.sh [monitor_id]"
 	exit
 fi
 

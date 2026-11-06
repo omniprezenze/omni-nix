@@ -1,15 +1,15 @@
 { pkgs, ... }:
 let
   screenshotter = pkgs.writeShellScriptBin "screenshotter" ''
-    set -eu
+    set -euo pipefail
 
       take_screenshot() {
         grim "$@" - | wl-copy
       } 
 
-    case "$1" in
+    case "''${1:-}" in
       monitor)
-        case "$XDG_CURRENT_DESKTOP" in
+        case "''${XDG_CURRENT_DESKTOP:-}" in
           sway)
             monitor=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
             take_screenshot -o "$monitor"
@@ -26,11 +26,12 @@ let
         ;;
 
       area)
-        take_screenshot -g "$(slurp -w 0)"
+        geometry=$(slurp -w 0)
+        take_screenshot -g "$geometry"
       ;;
 
       *) 
-        notify-send "Error" "$0 {monitor|area}"
+        printf 'Usage: %s {monitor|area}\n' "$0" >&2
         exit 1 
       ;;
     esac
