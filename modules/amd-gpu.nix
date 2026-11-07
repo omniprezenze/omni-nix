@@ -12,6 +12,9 @@
   environment = {
     systemPackages = with pkgs; [
       amdgpu_top
+      (writeShellScriptBin "amdgpu-tui" ''
+        exec ${ghostty}/bin/ghostty --title=amdgpu_top-tui -e ${amdgpu_top}/bin/amdgpu_top --dark
+      '')
     ];
   };
 

@@ -14,9 +14,6 @@ local host = getHostname()
 
 -- ─── Shared config ────────────────────────────────────────────────────────────
 require("hyprland_common")
--- require("dms.colors")
--- require("dms.layout")
--- require("dms.outputs")
 
 -- ─── Host-specific monitors ───────────────────────────────────────────────────
 if host == "omnipc" then
@@ -60,4 +57,8 @@ else
     })
 end
 -- DMS Include Configs
+require("dms.colors")
+require("dms.cursor")
+require("dms.input")
 require("dms.layout")
+require("dms.windowrules")

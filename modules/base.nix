@@ -80,7 +80,6 @@
       smartmontools
       file
       patchelf
-      zsh-powerlevel10k
     ];
     shells = [pkgs.zsh];
     variables = {
@@ -108,9 +107,9 @@
       autosuggestions.strategy = ["completion"];
       enableCompletion = true;
       syntaxHighlighting.enable = true;
-      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       ohMyZsh = {
         enable = true;
+        theme = "robbyrussell";
         plugins = [
           "git"
           "direnv"

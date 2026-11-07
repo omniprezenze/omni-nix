@@ -4,7 +4,9 @@
   systemd.user.targets.hyprland-session = {
     name = "hyprland-session.target";
     description = "Hyprland Session Target";
-    requires = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+    unitConfig.PropagatesStopTo = "graphical-session.target";
   };
 }

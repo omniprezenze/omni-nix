@@ -1,6 +1,14 @@
 {  inputs, pkgs, lib, config, ... }:
-  {
+  let
+    hyprland-session = pkgs.writeShellScript "hyprland-session" ''
+      trap '${pkgs.systemd}/bin/systemctl --user stop hyprland-session.target graphical-session.target' EXIT
+      /run/current-system/sw/bin/start-hyprland
+    '';
+  in {
     environment = {
+      etc = lib.mkIf (config.networking.hostName == "omnipc") {
+        "tuigreet/config.toml".source = ../dotfiles/tuigreet/config.toml;
+      };
       systemPackages = with pkgs; [
         fastfetch
         btop
@@ -35,8 +43,6 @@
         hyprpolkitagent
         wlogout
 
-        fuzzel
-
         grim
         slurp
         libnotify
@@ -67,8 +73,9 @@
         XDG_SESSION_TYPE = "wayland";
         HYPRLAND_LOG_WLR = 1;
         XCURSOR_SIZE = 24;
+        XCURSOR_THEME = "Bibata-Modern-Classic";
         HYPRCURSOR_SIZE = 24;
-        HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+        HYPRCURSOR_THEME = "Bibata-Modern-Classic";
         TERMINAL = "ghostty";
         QT_QPA_PLATFORMTHEME = "qt6ct";
 
@@ -94,6 +101,7 @@
       hypridle.enable = true;
       greetd = {
         enable = true;
+        useTextGreeter = true;
         settings.default_session = {
           user = "greeter";
           command = lib.strings.concatStringsSep " " [
@@ -101,7 +109,7 @@
             "--time"
             "--remember"
             "--asterisks"
-            "--cmd start-hyprland"
+            "--cmd ${hyprland-session}"
 #            "--cmd 'start-hyprland-custom'"
           ];
         };
@@ -139,17 +147,6 @@
           restartIfChanged = true;
         };
       };
-    };
-
-    # Without these bootlogs will spam on screen
-    systemd.services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      StandardError = "journal";
-      TTYReset = true;
-      TTYVHangup = true;
-      TTYVTDisallocate = true;
     };
 
     xdg.portal = {

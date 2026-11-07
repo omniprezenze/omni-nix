@@ -1,4 +1,6 @@
 {inputs, pkgs, ...}: {
+  imports = [ ../overlays/overlays.nix ];
+
   environment = with pkgs; {
     systemPackages = [
       keepassxc

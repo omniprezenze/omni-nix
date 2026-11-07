@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "custom",
-  "customThemeFile": "/home/omni/git/omni-nix/dotfiles/DankMaterialShell/custom-theme.json",
+  "customThemeFile": "~/.config/dms/custom-theme.json",
   "registryThemeVariants": {
     "everforest": "hard"
   },

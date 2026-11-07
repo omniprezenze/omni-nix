@@ -3,7 +3,7 @@
 -- ─── Variables ────────────────────────────────────────────────────────────────
 local terminal     = "ghostty"
 local fileManager  = "thunar"
-local menu         = "dms ipc spotlight toggle"
+local menu         = "dms ipc call spotlight toggle"
 local silent_steam = "steam -silent"
 local mainMod      = "SUPER"
 
@@ -132,7 +132,7 @@ hl.config({
 -- ─── Keybinds ─────────────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + Q",           hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + F4",          hl.dsp.window.close())
-hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exec_cmd("de-logout"))
+hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exit())
 hl.bind(mainMod .. " + E",           hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",           hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo())
@@ -159,7 +159,7 @@ hl.bind(mainMod .. " + SHIFT + M",  hl.dsp.exec_cmd("wayvncctl output-cycle"))
 -- Screenshots / system
 hl.bind(mainMod .. " + Print",    hl.dsp.exec_cmd("dms screenshot --no-file"))
 hl.bind("Print",                   hl.dsp.exec_cmd("dms screenshot full --no-file"))
-hl.bind(mainMod .. " + backspace", hl.dsp.exec_cmd("wlogout --protocol layer-shell -b 4 -T 500 -B 500 -L 275"))
+hl.bind(mainMod .. " + backspace", hl.dsp.exec_cmd("wlogout --protocol layer-shell -b 4 -T 300 -B 300 -L 100 -R 100"))
 hl.bind(mainMod .. " + L",         hl.dsp.exec_cmd("dms ipc call lock lock"))
 
 -- Special workspace (scratchpad)
@@ -209,7 +209,6 @@ hl.window_rule({ name = "size-save_as",     float = true, size = selector_size, 
 hl.window_rule({ name = "float-rename",       float = true, match = { title = "^(Rename.+)$" } })
 hl.window_rule({ name = "float-branchdialog", float = true, match = { title = "branchdialog" } })
 hl.window_rule({ name = "float-Lxappearance", float = true, match = { class = "Lxappearance" } })
-hl.window_rule({ name = "float-calcure",      float = true, match = { title = "^(calcure)$" } })
 hl.window_rule({ name = "float-PiP",          float = true, match = { title = "^(Picture-in-Picture)$" } })
 hl.window_rule({ name = "float-qalculate",    float = true, match = { class = "^(qalculate-gtk)$" } })
 hl.window_rule({ name = "float-blueman",      float = true, match = { class = "^(.blueman-manager-wrapped)$" } })
