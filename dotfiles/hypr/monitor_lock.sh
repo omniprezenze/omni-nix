@@ -1,78 +1,71 @@
 #!/usr/bin/env bash
 
-unlockedMonitorYPositions=(0 0 0)
-lockedMonitorYPositions=(1152 1152 1152)
+set -euo pipefail
+
+argument=${1:-}
+if [[ $# -gt 1 ]]; then
+    printf 'Usage: monitor_lock.sh [status|monitor_index]\n' >&2
+    exit 1
+fi
+
+case "$argument" in
+    help|-h|-help|--help)
+        printf 'Usage: monitor_lock.sh [status|monitor_index]\n'
+        exit 0
+        ;;
+    ''|status) ;;
+    *)
+        if [[ ! "$argument" =~ ^[0-9]+$ || ${#argument} -gt 6 ]]; then
+            printf 'Monitor index must be a non-negative integer.\n' >&2
+            exit 1
+        fi
+        argument=$((10#$argument))
+        ;;
+esac
 
 monitors=$(hyprctl -j monitors)
-tailMonitorIndex=$(($(echo "$monitors" | jq length)-1))
-monitorIndices=$(seq 0 $tailMonitorIndex)
+count=$(jq -er 'if type == "array" and length > 0 and all(.[]; (.name | type == "string" and length > 0) and (.x | type == "number") and (.y | type == "number") and (.focused | type == "boolean")) then length else error("invalid or empty monitor list") end' <<< "$monitors")
 
-if [ "$1" == "" ]; then
-	monitorUnlocked=0
-	for monitorIndex in $monitorIndices; do
-		monitor=$(echo "$monitors" | jq -c ".[$monitorIndex]")
-		
-		unlockedMonitorYPosition=${unlockedMonitorYPositions[$monitorIndex]}
-	
-		if [ $(echo "$monitor" | jq -j ".y") -eq $unlockedMonitorYPosition ]; then continue; fi
-	
-		hyprctl keyword monitor $(echo "$monitor" | jq -j ".name"),$(echo "$monitor" | jq -j ".width")x$(echo "$monitor" | jq -j ".height")@$(echo "$monitor" | jq -j ".refreshRate"),$(echo "$monitor" | jq -j ".x")x$unlockedMonitorYPosition,$(echo "$monitor" | jq -j ".scale") > /dev/null
-		
-		monitorUnlocked=1
-		
-		echo Unlocked monitor $monitorIndex
-	done
-
-	if [ $monitorUnlocked -eq 1 ]; then exit; fi
-
-	for monitorIndex in $monitorIndices; do
-		monitor=$(echo "$monitors" | jq -c ".[$monitorIndex]")
-		
-		if [ $(echo "$monitor" | jq -j ".focused") == "false" ]; then continue; fi
-		
-		hyprctl keyword monitor $(echo "$monitor" | jq -j ".name"),$(echo "$monitor" | jq -j ".width")x$(echo "$monitor" | jq -j ".height")@$(echo "$monitor" | jq -j ".refreshRate"),$(echo "$monitor" | jq -j ".x")x${lockedMonitorYPositions[$monitorIndex]},$(echo "$monitor" | jq -j ".scale") > /dev/null
-		
-		echo Locked monitor $monitorIndex
-		exit
-	done
-elif [ "$1" == "status" ]; then
-	for monitorIndex in $monitorIndices; do
-		if [ $(echo "$monitors" | jq -j ".[$monitorIndex].y") -eq ${unlockedMonitorYPositions[$monitorIndex]} ];
-			then echo Monitor $monitorIndex: Unlocked
-			else echo Monitor $monitorIndex: Locked;
-		fi
-	done
-	exit
-elif [ "$1" == "help" ] || [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ]; then
-	echo Usage:
-	echo -e "\tmonitor_lock.sh status"
-	echo -e "\tmonitor_lock.sh [monitor_id]"
-	exit
+if [[ "$argument" != '' && "$argument" != status && "$argument" -ge "$count" ]]; then
+    printf 'Monitor index must be between 0 and %s.\n' "$((count - 1))" >&2
+    exit 2
 fi
 
-if ! [[ $1 =~ ^[0-9]+$ ]]; then
-	echo "Error: Invalid parameter value was provided."
-	echo "[monitor_id] must be an integer."
-	exit 1
+move_monitor() {
+    local name=$1 x=$2 y=$3 index=$4 state=$5
+    wlr-randr --output "$name" --pos "$x,$y"
+    printf '%s monitor %s (%s)\n' "$state" "$index" "$name"
+}
+
+index=0
+unlocked=0
+while IFS=$'\t' read -r name x y focused; do
+    if [[ "$argument" == status ]]; then
+        if [[ "$y" == 0 ]]; then state=Unlocked; else state=Locked; fi
+        printf 'Monitor %s (%s): %s\n' "$index" "$name" "$state"
+    elif [[ "$argument" == '' && "$y" != 0 ]]; then
+        move_monitor "$name" "$x" 0 "$index" Unlocked
+        unlocked=1
+    elif [[ "$argument" != '' && "$argument" == "$index" ]]; then
+        if [[ "$y" == 0 ]]; then
+            move_monitor "$name" "$x" 1152 "$index" Locked
+        else
+            move_monitor "$name" "$x" 0 "$index" Unlocked
+        fi
+        exit 0
+    fi
+    index=$((index + 1))
+done < <(jq -r '.[] | [.name, .x, .y, .focused] | @tsv' <<< "$monitors")
+
+if [[ "$argument" == '' && "$unlocked" == 0 ]]; then
+    index=0
+    while IFS=$'\t' read -r name x y focused; do
+        if [[ "$focused" == true ]]; then
+            move_monitor "$name" "$x" 1152 "$index" Locked
+            exit 0
+        fi
+        index=$((index + 1))
+    done < <(jq -r '.[] | [.name, .x, .y, .focused] | @tsv' <<< "$monitors")
+    printf 'No focused monitor found.\n' >&2
+    exit 1
 fi
-
-if [ $1 -lt 0 ] || [ $tailMonitorIndex -lt $1 ]; then
-	echo "Error: The provided [monitor_id] is out of range."
-	echo "[monitor_id] must be an integer from 0 to $tailMonitorIndex."
-	exit 2
-fi
-
-monitor=$(echo "$monitors" | jq -c ".[$1]")
-
-unlockedMonitorYPosition=${unlockedMonitorYPositions[$1]}
-
-if [ $(echo "$monitor" | jq -j ".y") -eq $unlockedMonitorYPosition ]; then
-	hyprctl keyword monitor $(echo "$monitor" | jq -j ".name"),$(echo "$monitor" | jq -j ".width")x$(echo "$monitor" | jq -j ".height")@$(echo "$monitor" | jq -j ".refreshRate"),$(echo "$monitor" | jq -j ".x")x${lockedMonitorYPositions[$monitorIndex]},$(echo "$monitor" | jq -j ".scale") > /dev/null
-		
-	echo Locked monitor $1
-	exit
-fi
-	
-hyprctl keyword monitor $(echo "$monitor" | jq -j ".name"),$(echo "$monitor" | jq -j ".width")x$(echo "$monitor" | jq -j ".height")@$(echo "$monitor" | jq -j ".refreshRate"),$(echo "$monitor" | jq -j ".x")x$unlockedMonitorYPosition,$(echo "$monitor" | jq -j ".scale") > /dev/null
-	
-echo Unlocked monitor $1

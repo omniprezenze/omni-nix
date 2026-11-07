@@ -9,7 +9,6 @@ local mainMod      = "SUPER"
 
 -- ─── Autostart ────────────────────────────────────────────────────────────────
 hl.on("hyprland.start", function()
-    hl.exec_cmd("xrandr --output DP-1 --primary")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("wl-clip-persist --clipboard regular")
     hl.exec_cmd("corectrl")
@@ -24,11 +23,6 @@ end)
 -- ─── General ──────────────────────────────────────────────────────────────────
 hl.config({
     general = {
-        col = {
-            active_border   = "rgb(f5a97f)",
-            inactive_border = "rgba(595959aa)",
-        },
-        resize_on_border = false,
         allow_tearing    = false,
         layout           = "dwindle",
     },
@@ -57,7 +51,6 @@ hl.config({
         blur = {
             enabled  = false,
             size     = 3,
-            passes   = 1,
             vibrancy = 0.1696,
         },
     },
@@ -122,13 +115,6 @@ hl.config({
     },
 })
 
--- ─── Render ───────────────────────────────────────────────────────────────────
--- hl.config({
---     render = {
---         direct_scanout = true,
---     },
--- })
-
 -- ─── Keybinds ─────────────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + Q",           hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + F4",          hl.dsp.window.close())
@@ -155,6 +141,7 @@ hl.bind(mainMod .. " + SPACE",      hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + U",          hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + U",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/monitor_lock.sh"))
 hl.bind(mainMod .. " + SHIFT + M",  hl.dsp.exec_cmd("wayvncctl output-cycle"))
+hl.bind(mainMod .. " + SHIFT + D",  hl.dsp.exec_cmd('bash "$HOME/.config/hypr/toggle-direct-scanout.sh"'))
 
 -- Screenshots / system
 hl.bind(mainMod .. " + Print",    hl.dsp.exec_cmd("dms screenshot --no-file"))
@@ -292,11 +279,3 @@ hl.window_rule({
         pin        = false,
     },
 })
-
-
-hl.workspace_rule({ workspace = "1", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "4", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "5", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "6", monitor = "DP-2" })

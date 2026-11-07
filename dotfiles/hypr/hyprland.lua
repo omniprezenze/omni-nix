@@ -17,6 +17,10 @@ require("hyprland_common")
 
 -- ─── Host-specific monitors ───────────────────────────────────────────────────
 if host == "omnipc" then
+    hl.on("hyprland.start", function()
+        hl.exec_cmd("xrandr --output DP-1 --primary")
+    end)
+
     -- Note: vrr, bitdepth, sdrbrightness, sdrsaturation are extra fields;
     -- verify they are accepted by your 0.55 build.
     hl.monitor({
@@ -38,6 +42,9 @@ if host == "omnipc" then
         sdrbrightness = 1.3,
         sdrsaturation = 1.3,
     })
+    for workspace = 1, 6 do
+        hl.workspace_rule({ workspace = tostring(workspace), monitor = workspace <= 3 and "DP-1" or "DP-2" })
+    end
 
 elseif host == "omnilaptop" then
     hl.monitor({

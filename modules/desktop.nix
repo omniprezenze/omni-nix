@@ -25,6 +25,7 @@
 
         wl-clipboard
         wl-clip-persist
+        wlr-randr
         xdg-utils
 
         file-roller
@@ -40,7 +41,7 @@
         bibata-cursors
         kdePackages.qt6ct
 
-        hyprpolkitagent
+        # hyprpolkitagent
         wlogout
 
         grim
@@ -78,7 +79,7 @@
         HYPRCURSOR_THEME = "Bibata-Modern-Classic";
         TERMINAL = "ghostty";
         QT_QPA_PLATFORMTHEME = "qt6ct";
-
+      } // lib.optionalAttrs (config.networking.hostName == "omnipc") {
         WAYLANDDRV_PRIMARY_MONITOR = "DP-1";
       };
       shellAliases = {
@@ -98,7 +99,6 @@
       gvfs.enable = true; # Mount, trash, and other functionalities
       tumbler.enable = true; # thunar Thumbnail support for images
       ratbagd.enable = true;
-      hypridle.enable = true;
       greetd = {
         enable = true;
         useTextGreeter = true;

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./hyprpolkitagent.nix
+    # ./hyprpolkitagent.nix
     ./hyprland-session-target.nix
   ];
 }
